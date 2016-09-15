@@ -7,8 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <title>Hello World!</title>
+  <title>Welcome to your Daily Planet</title>
   <script src="../Build/Cesium/Cesium.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <style>
       @import url(../Build/Cesium/Widgets/widgets.css);
       html, body, #cesiumContainer {
@@ -21,8 +22,14 @@
   <script>
     var viewer = new Cesium.Viewer('cesiumContainer');
 
+    var pinBuilder = new Cesium.PinBuilder();
+
+    var bluePin = viewer.entities.add(
+            
+    );
+
     var wyoming = viewer.entities.add({
-      name : 'Wyoming',
+      name : 'Place',
       polygon : {
         hierarchy : Cesium.Cartesian3.fromDegreesArray([
           -109.080842,45.002073,
@@ -41,6 +48,19 @@
         outline : true,
         outlineColor : Cesium.Color.BLACK
       }
+    });
+
+    var url = "https://api.nytimes.com/svc/topstories/v2/world.json";
+    url += '?' + $.param({
+              'api-key': "591e19bb7d974693b30e645f3288102d"
+            });
+    $.ajax({
+        url: url,
+        method: 'GET',
+    }).done(function(result) {
+        console.log(result);
+    }).fail(function(err) {
+        throw err;
     });
 
     wyoming.description = '\
@@ -68,8 +88,8 @@
     target="_blank"\
     href="http://en.wikipedia.org/wiki/Wyoming">Wikpedia</a>\
 </p>';
-    
-    viewer.zoomTo(wyoming);
+
+    //viewer.zoomTo(wyoming);
   </script>
 </body>
 </html>
