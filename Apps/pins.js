@@ -40,6 +40,13 @@ setTimeout(function(){
             description: response[j].abstract,
             outline : true
         });
+
+        // populate accordion menu
+        var newstitle = (i+1) + ". " + response[j].title;
+        var newsabstract = response[j].abstract;
+        $("#news"+i+"title").html(newstitle);
+        $("#news"+i+"abstract").html(newsabstract);
+
         console.log("complete "+i+" news located at "+response[i.toString()].geo_facet["0"]);
         console.log("The title of article " +i+ " is: " +response[i].title);
         console.log(coord[i][0]+ " "+coord[i][1]);

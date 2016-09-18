@@ -15,6 +15,7 @@
   <script src="nyt_topstories_v2.js"></script> <!-- js to access NYT -->
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- some default jquery.ui stylesheet -->
 
   <style>
       @import url(../Build/Cesium/Widgets/widgets.css);
@@ -39,25 +40,35 @@
         padding-top: 2px;
         padding-bottom: 2px;
       }
+
   </style>
 </head>
 
 <body>
   <div id="cesiumContainer"></div>
+
   <!-- TESTING SIDEBAR ACCORDION -->
-  <div id="testSidebar">
-    <h3><a href="#">Accordion test 1</a></h3> <!-- href is necessary for .accordion() function of jquery-->
-    <div id="accordionTest1">
-      <p>Test 1 contents</p>
-    </div>
-    <h3><a href="#">Accordion test 2</a></h3>
-    <div id="accordionTest2">
-      <p>Test 2 contents</p>
-    </div>
-    <h3><a href="#">Accordion test 3</a></h3>
-    <div id="accordionTest3">
-      <p>Test 3 contents</p>
-    </div>
+  <div id="testSidebar" style="max-width:300px">
+    <h3 id="news0title"></h3> <!-- href is necessary for .accordion() function of jquery-->
+    <div id="news0abstract"><p></p></div>
+    <h3 id="news1title"></h3>
+    <div id="news1abstract"><p></p></div>
+    <h3 id="news2title"></h3>
+    <div id="news2abstract"><p></p></div>
+    <h3 id="news3title"></h3>
+    <div id="news3abstract"><p></p></div>
+    <h3 id="news4title"></h3>
+    <div id="news4abstract"><p></p></div>
+    <h3 id="news5title"></h3>
+    <div id="news5abstract"><p></p></div>
+    <h3 id="news6title"></h3>
+    <div id="news6abstract"><p></p></div>
+    <h3 id="news7title"></h3>
+    <div id="news7abstract"><p></p></div>
+    <h3 id="news8title"></h3>
+    <div id="news8abstract"><p></p></div>
+    <h3 id="news9title"></h3>
+    <div id="news9abstract"><p></p></div>
   </div>
 
   <script>
@@ -96,7 +107,11 @@
       */
 
       // finally, accordion-ify the sidebar
-      $("#testSidebar").accordion();
+      $(function() {
+        $("#testSidebar").accordion({
+          heightStyle: "content"
+        });
+      });
     };
   </script>
   <script src="pins.js"></script> <!-- loads pins and news articles -->
