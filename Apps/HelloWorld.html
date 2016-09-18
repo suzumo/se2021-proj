@@ -15,14 +15,47 @@
 
   <style>
       @import url(../Build/Cesium/Widgets/widgets.css);
+
       html, body, #cesiumContainer {
           width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+
+      #testSidebar {
+        display: block;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background: rgba(42, 42, 42, 0.8);
+        padding: 4px;
+        border-radius: 4px;
+        color: white;
+        font-family: sans-serif;
+      }
+      #testSidebar input {
+        vertical-align: middle;
+        padding-top: 2px;
+        padding-bottom: 2px;
       }
   </style>
 </head>
 
 <body>
   <div id="cesiumContainer"></div>
+  <!-- TESTING SIDEBAR ACCORDION -->
+  <div id="testSidebar">
+    <h3><a href="#">Accordion test 1</a></h3> <!-- href is necessary for .accordion() function of jquery-->
+    <div id="accordionTest1">
+      <p>Test 1 contents</p>
+    </div>
+    <h3><a href="#">Accordion test 2</a></h3>
+    <div id="accordionTest2">
+      <p>Test 2 contents</p>
+    </div>
+    <h3><a href="#">Accordion test 3</a></h3>
+    <div id="accordionTest3">
+      <p>Test 3 contents</p>
+    </div>
+  </div>
 
   <script>
     var viewer = new Cesium.Viewer('cesiumContainer');
@@ -67,12 +100,48 @@
           outline : true
         });
         console.log("complete "+i+" news located at "+response[i.toString()].geo_facet["0"]);
+        console.log("The title of article " +i+ " is: " +response[i].title);
         console.log(coord[i][0]+ " "+coord[i][1]);
       }
     }, 2000); // delay function by 2000ms to get loc info from Bing
 
-  </script>
+    // BELOW IS TESTING FOR SIDEBAR STUFF
+    // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
+    // occur after pins populate the map)
+    window.onload = function () {
+      // TEST 1: Append basic text box to sidebar - PASSED
+      /*
+      testElement = document.createElement("li");
+      testTextbox = document.createTextNode("This is a test for appending stuff to sidebar Kappa");
+      testElement.appendChild(testTextbox);
+      document.getElementById("testSidebar").appendChild(testElement);
+      */
 
+      // TEST 2: Append a new element to be accordion-ified - PASSED
+      /*
+      testHeading = document.createElement("h3");
+      testElement = document.createElement("a");
+      testElement.setAttribute("href", "#");
+      testDivElement = document.createElement("div");
+      testParaElement = document.createElement("p");
+
+      headingContent = document.createTextNode("Heading Kappa");
+      paragraphContent = document.createTextNode("Paragraph content Kappa");
+
+      testParaElement.appendChild(paragraphContent);
+      testDivElement.appendChild(testParaElement);
+      testElement.appendChild(headingContent);
+      testHeading.appendChild(testElement);
+
+      document.getElementById("testSidebar").appendChild(testHeading);
+      document.getElementById("testSidebar").appendChild(testDivElement);
+      */
+
+      // finally, accordion-ify the sidebar
+      $("#testSidebar").accordion();
+    };
+
+  </script>
   <!-- the old wyoming example
   <script>
     var wyoming = viewer.entities.add({
@@ -126,4 +195,5 @@
   </script>
   -->
 </body>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
 </html>
