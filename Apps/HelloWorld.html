@@ -8,10 +8,13 @@
   <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title>Welcome to your Daily Planet</title>
+
   <script src="../Build/Cesium/Cesium.js"></script> <!-- this is to enable cesium object -->
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="nyt_topstories_v2.js"></script> <!-- js to access NYT -->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
 
   <style>
       @import url(../Build/Cesium/Widgets/widgets.css);
@@ -60,51 +63,6 @@
   <script>
     var viewer = new Cesium.Viewer('cesiumContainer');
 
-    //testing: pin from JSON object
-    // below function is hack job to access the populated NYT articles, which is now stored in response
-    var pinBuilder = new Cesium.PinBuilder();
-
-    // function to translate from location name to longitude and latitude
-    function getLocationFromBingAPI(location, name) {
-      $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+name+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
-        location.push(result.resourceSets["0"].resources["0"].point.coordinates["1"]); // longitude
-        location.push(result.resourceSets["0"].resources["0"].point.coordinates["0"]); // latitude
-      });
-    };
-
-    // this will hold all the coordinates (longitude,latitude) of the articles in 2D array
-    var coord = [];
-
-    // first loop to find coordinates for the articles first
-    setTimeout(function(){
-      //console.log(response); // print out the results from NYT in browser console
-      for (i = 0; i < 10; i++) {
-        coord[i] = [];
-        getLocationFromBingAPI(coord[i], response[i.toString()].geo_facet["0"]);
-      }
-    }, 1000); // delay function by 1000ms to allow get info from NYT
-
-    // second loop to put pins on map
-    setTimeout(function(){
-      //console.log(coord); // print out the results of all the coordinates
-      for (i = 0; i < 10; i++) {
-        var j = i.toString();
-        var pin = viewer.entities.add({
-          name: response[j].title,
-          position: Cesium.Cartesian3.fromDegrees(coord[i][0], coord[i][1]),
-          billboard: {
-            image: pinBuilder.fromText(j, Cesium.Color.fromRandom({alpha : 1.0}), 48).toDataURL(),
-            verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-          },
-          description: response[j].abstract,
-          outline : true
-        });
-        console.log("complete "+i+" news located at "+response[i.toString()].geo_facet["0"]);
-        console.log("The title of article " +i+ " is: " +response[i].title);
-        console.log(coord[i][0]+ " "+coord[i][1]);
-      }
-    }, 2000); // delay function by 2000ms to get loc info from Bing
-
     // BELOW IS TESTING FOR SIDEBAR STUFF
     // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
     // occur after pins populate the map)
@@ -140,60 +98,7 @@
       // finally, accordion-ify the sidebar
       $("#testSidebar").accordion();
     };
-
   </script>
-  <!-- the old wyoming example
-  <script>
-    var wyoming = viewer.entities.add({
-      name : 'Place',
-      polygon : {
-        hierarchy : Cesium.Cartesian3.fromDegreesArray([
-          -109.080842,45.002073,
-          -105.91517,45.002073,
-          -104.058488,44.996596,
-          -104.053011,43.002989,
-          -104.053011,41.003906,
-          -105.728954,40.998429,
-          -107.919731,41.003906,
-          -109.04798,40.998429,
-          -111.047063,40.998429,
-          -111.047063,42.000709,
-          -111.047063,44.476286,
-          -111.05254,45.002073]),
-        material : Cesium.Color.RED.withAlpha(0.5),
-        outline : true,
-        outlineColor : Cesium.Color.BLACK
-      }
-    });
-    // manually appending wyoming window contents
-    wyoming.description = '\
-      <img\
-        width="50%"\
-        style="float:left; margin: 0 1em 1em 0;"\
-        src="//cesiumjs.org/images/2015/02-02/Flag_of_Wyoming.svg"/>\
-      <p>\
-        Wyoming is a state in the mountain region of the Western \
-        United States.\
-      </p>\
-      <p>\
-        Wyoming is the 10th most extensive, but the least populous \
-        and the second least densely populated of the 50 United \
-        States. The western two thirds of the state is covered mostly \
-        with the mountain ranges and rangelands in the foothills of \
-        the eastern Rocky Mountains, while the eastern third of the \
-        state is high elevation prairie known as the High Plains. \
-        Cheyenne is the capital and the most populous city in Wyoming, \
-        with a population estimate of 62,448 in 2013.\
-      </p>\
-      <p>\
-        Source: \
-        <a style="color: WHITE"\
-          target="_blank"\
-          href="http://en.wikipedia.org/wiki/Wyoming">Wikpedia</a>\
-      </p>';
-    //viewer.zoomTo(wyoming); //disabling auto zoom to Wyoming
-  </script>
-  -->
+  <script src="pins.js"></script> <!-- loads pins and news articles -->
 </body>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
 </html>
