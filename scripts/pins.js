@@ -20,7 +20,9 @@ var pin = []; // store all pins in this array
 setTimeout(function(){
     for (i = 0; i < 10; i++) {
         coord[i] = [];
-        getLocationFromBingAPI(coord[i], response[i.toString()].geo_facet["0"]);
+        var j = i.toString();
+        var k = (response[j].geo_facet.length -1).toString();
+        getLocationFromBingAPI(coord[i], response[j].geo_facet[k]);
     }
 }, 1000); // delay function by 1000ms to allow get info from NYT
 
@@ -53,7 +55,8 @@ setTimeout(function(){
         $("#news"+i+"title").html(newstitle);
         $("#news"+i+"abstract").html(newsabstract);
 
-        console.log("complete "+i+" news located at "+response[j].geo_facet["0"]);
+        var k = (response[j].geo_facet.length -1).toString();
+        console.log("complete "+i+" news located at "+response[j].geo_facet[k]);
         console.log("The title of article " +i+ " is: " +response[i].title);
         console.log(coord[i][0]+ " "+coord[i][1]);
     }
