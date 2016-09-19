@@ -30,10 +30,10 @@
         top: 5px;
         left: 5px;
         background: rgba(42, 42, 42, 0.8);
-        padding: 4px;
+        padding: 10px;
         border-radius: 4px;
         color: white;
-        font-family: sans-serif;
+        font-family: Georgia;
         max-width: 300px;
       }
 
@@ -68,9 +68,15 @@
   </div>
 
   <script>
-    var viewer = new Cesium.Viewer('cesiumContainer');
+    var viewModels = Cesium.createDefaultImageryProviderViewModels();
+    var viewer = new Cesium.Viewer('cesiumContainer', {
+      //geocoder: false, // to get rid of the default search by address/landmark searchbar
+      animation: false,
+      timeline: false,
+      navigationHelpButton: false,
+      selectedImageryProviderViewModel: viewModels[1], // set default imagery to bing maps aerial with labels
+    });
 
-    // BELOW IS TESTING FOR SIDEBAR STUFF
     // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
     // occur after pins populate the map)
     window.onload = function () {
