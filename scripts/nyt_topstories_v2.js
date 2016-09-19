@@ -7,9 +7,17 @@ $.ajax({
     url: url,
     method: 'GET',
 }).done(function(result) {
-    for (i = 0; i < 10; i++) {
-        var x = JSON.parse(JSON.stringify(result.results[i]));
+    var i = 0;
+    var j = 0;
+    while (i < 10) {
+        var x = JSON.parse(JSON.stringify(result.results[j]));
+        if (x.geo_facet.length == 0) {
+            ++j;
+            continue;
+        }
         response.push(x);
+        ++j;
+        ++i;
     }
 }).fail(function(err) {
     throw err;
