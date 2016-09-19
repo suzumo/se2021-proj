@@ -23,17 +23,25 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 // function for getting real-time clock
-function updateClock() {
-  var now = new Date();
-  var time = now.getHours() + ':' + now.getMinutes();
-  var date = [now.getDate(), now.getMonth(), now.getFullYear()].join('/');
-  document.getElementById('time').innerHTML = "Local Time: " + time + " " + date;
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var date = [today.getDate(), today.getMonth(), today.getFullYear()].join('/')
+  m = checkTime(today.getMinutes());
+  s = checkTime(today.getSeconds());
+  document.getElementById('time').innerHTML = "Local Time: " + h + ":" + m + ":" + s + " " + date;
+  var t = setTimeout(startTime, 500);
 }
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};
+  return i;
+}
+
 
 // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
 // occur after pins populate the map)
 window.onload = function () {
-  setTimeout(updateClock(), 1000);
+  startTime();
   // finally, accordion-ify the sidebar
   $(function() {
     $("#testSidebar").accordion({
