@@ -12,10 +12,10 @@
   <script src="../Build/Cesium/Cesium.js"></script> <!-- this is to enable cesium object -->
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <script src="nyt_topstories_v2.js"></script> <!-- js to access NYT -->
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
   <link rel="stylesheet" href="jquery-ui-themes-1.12.1/jquery-ui.css"> <!-- some default jquery.ui stylesheet -->
+  <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
 
   <style>
       @import url(../Build/Cesium/Widgets/widgets.css);
@@ -71,47 +71,7 @@
     <div id="news9abstract"><p></p></div>
   </div>
 
-  <script>
-  // change default camera centre on opening application
-  
-    var west = -95.0;
-    var south = -20.0;
-    var east = 60.0;
-    var north = 21.0;
-
-    var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
-    Cesium.Camera.DEFAULT_VIEW_FACTOR = 2.01;
-    Cesium.Camera.DEFAULT_VIEW_RECTANGLE = rectangle;
-  
-    var viewModels = Cesium.createDefaultImageryProviderViewModels();
-    var viewer = new Cesium.Viewer('cesiumContainer', {
-      //geocoder: false, // to get rid of the default search by address/landmark searchbar
-      animation: false,
-      timeline: false,
-      navigationHelpButton: false,
-      // set default imagery to bing maps aerial with labels
-      selectedImageryProviderViewModel: viewModels[2],
-      // set map to be viewed in 2d by default
-      sceneMode: Cesium.SceneMode.SCENE2D,
-    });
-
-    // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
-    // occur after pins populate the map)
-    window.onload = function () {
-      // finally, accordion-ify the sidebar
-      $(function() {
-        $("#testSidebar").accordion({
-          heightStyle: "content",
-          collapsible: true,
-          active: false
-        });
-
-        // TODO: must link clicking on bar to focusing map on icon (+showing the more detailed newsarticle sidepanel?)
-        //viewer.zoomTo(pin[x]);
-
-      });
-    };
-  </script>
-  <script src="pins.js"></script> <!-- loads pins and news articles -->
+  <script src="scripts/map.js"></script>
+  <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
 </body>
 </html>
