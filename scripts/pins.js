@@ -29,7 +29,7 @@ setTimeout(function(){
     for (i = 0; i < 10; i++) {
         var j = i.toString();
         pin[i] = viewer.entities.add({
-            name: response[j].title,
+            name: "New York Times",
             position: Cesium.Cartesian3.fromDegrees(coord[i][0], coord[i][1]),
             billboard: {
                 image: pinBuilder.fromText((i+1).toString(), Cesium.Color.fromRandom({alpha : 1.0}), 48).toDataURL(),
