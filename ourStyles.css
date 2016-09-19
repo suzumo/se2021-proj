@@ -1,16 +1,21 @@
   @import url(../Build/Cesium/Widgets/widgets.css);
 
   html, body, #cesiumContainer {
-      width: 94%; height: 100%; margin: 0; padding: 0; overflow: hidden;
-      background-color: black;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    background-color: black;
   }
 
   #testSidebar {
     display: block;
     position: absolute;
     /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
-    top: 35px;
-    right: 0px; 
+    top: 50px;
+    right: 2px;
     /* sidebar on the left */
     /*
     top: 10px;
@@ -28,4 +33,18 @@
     border:none;width:100%;
     width:calc(100% - 2px);
     min-height:750px
+  }
+
+  .cesium-infoBox-visible {
+    top: 55px;
+    right: 2 px;
+    transform: translate(0,0);
+    visibility: visible;
+    opacity: 1;
+    transition:  opacity 0.2s ease-out,transform 0.2s ease-out;
+    transition-property: opacity, transform;
+    transition-duration: 0.2s, 0.2s;
+    transition-timing-function: ease-out, ease-out;
+    transition-delay: initial;
+    z-index:9;
   }
