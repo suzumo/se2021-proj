@@ -27,8 +27,13 @@
       #testSidebar {
         display: block;
         position: absolute;
-        top: 50px;  /* alternative: newsbar moved to the right side (hacky method - have to guess numbers) */
+        /* alternative: newsbar moved to the right side (hacky method - have to guess numbers) 
+        top: 50px;
         right: 10px; 
+        */
+        /* sidebar on the left */
+        top: 10px;
+        left: 10px;
         background: rgba(42, 42, 42, 0.8);
         padding: 10px;
         border-radius: 4px;
@@ -42,7 +47,6 @@
 
 <body>
   <div id="cesiumContainer"></div>
-
   <!-- TESTING SIDEBAR ACCORDION -->
   <div id="testSidebar">
     <h3 id="news0title"></h3> <!-- href is necessary for .accordion() function of jquery-->
@@ -74,8 +78,12 @@
       animation: false,
       timeline: false,
       navigationHelpButton: false,
-      selectedImageryProviderViewModel: viewModels[1], // set default imagery to bing maps aerial with labels
+      // set default imagery to bing maps aerial with labels
+      selectedImageryProviderViewModel: viewModels[1],
+      // set map to be viewed in 2d by default
+      //sceneMode: Cesium.SceneMode.
     });
+
 
     // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
     // occur after pins populate the map)
