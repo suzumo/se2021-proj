@@ -24,6 +24,9 @@ setTimeout(function(){
     }
 }, 1000); // delay function by 1000ms to allow get info from NYT
 
+var iframe = document.getElementsByClassName('cesium-infoBox-iframe')[0];
+iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms'); 
+
 // second loop to put pins on map
 setTimeout(function(){
     for (i = 0; i < 10; i++) {
@@ -35,7 +38,8 @@ setTimeout(function(){
                 image: pinBuilder.fromText((i+1).toString(), Cesium.Color.fromRandom({alpha : 1.0}), 48).toDataURL(),
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM
             },
-            description: response[j].abstract,
+            description: '<embed src='+response[j].url+' height=99% width=100%> </embed>',
+            //description: '<embed src=\"'+response[j].short_url+'\"></embed>',
             outline : true
         });
 
@@ -49,11 +53,9 @@ setTimeout(function(){
         $("#news"+i+"title").html(newstitle);
         $("#news"+i+"abstract").html(newsabstract);
 
-        console.log("complete "+i+" news located at "+response[i.toString()].geo_facet["0"]);
+        console.log("complete "+i+" news located at "+response[j].geo_facet["0"]);
         console.log("The title of article " +i+ " is: " +response[i].title);
         console.log(coord[i][0]+ " "+coord[i][1]);
-
-        document.getElementById("cesiumContainer").getElementsByClassName("cesium-infoBox-iframe")[0].setAttribute("src",response[i].short_url);
     }
 }, 2000); // delay function by 2000ms to get loc info from Bing
 
