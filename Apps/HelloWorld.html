@@ -74,34 +74,6 @@
     // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
     // occur after pins populate the map)
     window.onload = function () {
-      // TEST 1: Append basic text box to sidebar - PASSED
-      /*
-      testElement = document.createElement("li");
-      testTextbox = document.createTextNode("This is a test for appending stuff to sidebar Kappa");
-      testElement.appendChild(testTextbox);
-      document.getElementById("testSidebar").appendChild(testElement);
-      */
-
-      // TEST 2: Append a new element to be accordion-ified - PASSED
-      /*
-      testHeading = document.createElement("h3");
-      testElement = document.createElement("a");
-      testElement.setAttribute("href", "#");
-      testDivElement = document.createElement("div");
-      testParaElement = document.createElement("p");
-
-      headingContent = document.createTextNode("Heading Kappa");
-      paragraphContent = document.createTextNode("Paragraph content Kappa");
-
-      testParaElement.appendChild(paragraphContent);
-      testDivElement.appendChild(testParaElement);
-      testElement.appendChild(headingContent);
-      testHeading.appendChild(testElement);
-
-      document.getElementById("testSidebar").appendChild(testHeading);
-      document.getElementById("testSidebar").appendChild(testDivElement);
-      */
-
       // finally, accordion-ify the sidebar
       $(function() {
         $("#testSidebar").accordion({
