@@ -33,14 +33,16 @@
   }
 
   .cesium-infoBox-iframe{
-    border:none;width:100%;
+    border:none;
+    width:100%;
     width:calc(100% - 2px);
+    overflow: auto;
     min-height:750px
   }
 
   .cesium-infoBox-visible {
-    top: 55px;
-    right: 330px;
+    top: 50px;
+    right: calc(15% + 15px);
     transform: translate(0,0);
     visibility: visible;
     opacity: 1;
