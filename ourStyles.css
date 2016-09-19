@@ -23,3 +23,9 @@
     font-family: Georgia;
     max-width: 315px;
   }
+
+  .cesium-infoBox-iframe{
+    border:none;width:100%;
+    width:calc(100% - 2px);
+    min-height:750px
+  }
