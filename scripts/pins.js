@@ -52,6 +52,8 @@ setTimeout(function(){
         console.log("complete "+i+" news located at "+response[i.toString()].geo_facet["0"]);
         console.log("The title of article " +i+ " is: " +response[i].title);
         console.log(coord[i][0]+ " "+coord[i][1]);
+
+        document.getElementById("cesiumContainer").getElementsByClassName("cesium-infoBox-iframe")[0].setAttribute("src",response[i].short_url);
     }
 }, 2000); // delay function by 2000ms to get loc info from Bing
 
