@@ -65,3 +65,25 @@
     -moz-transition: opacity 0.2s ease-out,-moz-transform 0.2s ease-out;
     transition: opacity 0.2s ease-out,transform 0.2s ease-out;
   }
+
+    .navbar-brand {
+    padding: 0px;
+  }
+
+  .navbar-wrapper {
+    position: absolute;
+    top: 0;
+    right 0;
+    width: 100%;
+    left 0;
+    z-index: 20;
+  }
+
+  .navbar-wrapper .navbar {
+    width: 100%;
+  }
+
+  .navbar-brand>img {
+    height: 100%;
+    padding: 3px;
+  }

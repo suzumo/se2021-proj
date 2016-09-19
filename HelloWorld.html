@@ -13,6 +13,7 @@
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
   <link rel="stylesheet" href="jquery-ui-themes-1.12.1/jquery-ui.css"/> <!-- some default jquery.ui stylesheet -->
   <link rel="stylesheet" href="ourStyles.css">
@@ -22,6 +23,30 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class = "navbar-brand">
+          <img  src="../Apps/daily_planet_logo.jpg" alt="Daily Planet Logo" style="width:180px;height:45px;">
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <form class="navbar-form" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control"placeholder="Search for a country">
+        </div>
+          <button type="submit" class="btn btn-default"> Submit</button>
+        </form>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <button type="button" class="btn btn-default"> Tutorial </button>
+        <button type="button" class="btn btn-default"> Contact Us </button>
+      </ul>
+
+    </div>
+  </nav>
   <div id="cesiumContainer"></div>
   <!-- TESTING SIDEBAR ACCORDION -->
   <div id="testSidebar">
