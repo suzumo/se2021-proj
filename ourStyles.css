@@ -2,7 +2,7 @@
 
   html, body, #cesiumContainer {
       width: 94%; height: 100%; margin: 0; padding: 0; overflow: hidden;
-      background-color: white;
+      background-color: black;
   }
 
   #testSidebar {
@@ -17,9 +17,9 @@
     left: 10px;
     */
     background: rgba(42, 42, 42, 0.8);
-    padding: 10px;
+    padding: 5px;
     border-radius: 4px;
     color: white;
     font-family: Georgia;
-    max-width: 305px;
+    max-width: 315px;
   }
