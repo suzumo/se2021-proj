@@ -27,6 +27,7 @@
     color: white;
     font-family: Georgia;
     max-width: 315px;
+    z-index:1;
   }
 
   .cesium-infoBox-iframe{
@@ -37,7 +38,7 @@
 
   .cesium-infoBox-visible {
     top: 55px;
-    right: 2 px;
+    right: 330px;
     transform: translate(0,0);
     visibility: visible;
     opacity: 1;
@@ -47,4 +48,16 @@
     transition-timing-function: ease-out, ease-out;
     transition-delay: initial;
     z-index:9;
+  }
+
+  .cesium-baseLayerPicker-dropDown-visible {
+    -webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    transform: translate(0,0);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+    -webkit-transition: opacity 0.2s ease-out,-webkit-transform 0.2s ease-out;
+    -moz-transition: opacity 0.2s ease-out,-moz-transform 0.2s ease-out;
+    transition: opacity 0.2s ease-out,transform 0.2s ease-out;
   }
