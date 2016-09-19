@@ -91,17 +91,23 @@
   #fixedbox {
     position: fixed;
     bottom: 10px;
-    left: 20px;
+    left: 10px;
+    background-color: rgba(42, 42, 42, 0.8);
+    color: whitesmoke;
+    padding: 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 20px;
   }
 
   #countryview {
     position: fixed;
     left: 30px;
-    bottom: 90px;
+    bottom: 110px;
   }
 
   #globalview {
     position: fixed;
     left: 100px;
-    bottom: 90px;
+    bottom: 110px;
   }
