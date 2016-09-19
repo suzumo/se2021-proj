@@ -79,9 +79,9 @@
       timeline: false,
       navigationHelpButton: false,
       // set default imagery to bing maps aerial with labels
-      selectedImageryProviderViewModel: viewModels[1],
+      selectedImageryProviderViewModel: viewModels[2],
       // set map to be viewed in 2d by default
-      //sceneMode: Cesium.SceneMode.
+      sceneMode: Cesium.SceneMode.SCENE2D,
     });
 
 
@@ -98,6 +98,7 @@
 
         // TODO: must link clicking on bar to focusing map on icon (+showing the more detailed newsarticle sidepanel?)
         //viewer.zoomTo(pin[x]);
+
       });
     };
   </script>
