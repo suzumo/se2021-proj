@@ -66,7 +66,7 @@
     transition: opacity 0.2s ease-out,transform 0.2s ease-out;
   }
 
-    .navbar-brand {
+  .navbar-brand {
     padding: 0px;
   }
 
@@ -86,4 +86,22 @@
   .navbar-brand>img {
     height: 100%;
     padding: 3px;
+  }
+
+  #fixedbox {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+  }
+
+  #countryview {
+    position: fixed;
+    left: 30px;
+    bottom: 90px;
+  }
+
+  #globalview {
+    position: fixed;
+    left: 100px;
+    bottom: 90px;
   }
