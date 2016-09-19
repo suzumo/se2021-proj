@@ -9,7 +9,10 @@ Cesium.Camera.DEFAULT_VIEW_RECTANGLE = rectangle;
 
 var viewModels = Cesium.createDefaultImageryProviderViewModels();
 var viewer = new Cesium.Viewer('cesiumContainer', {
-  //geocoder: false, // to get rid of the default search by address/landmark searchbar
+  fullscreenButton: false, // disable fullscreen button
+  geocoder: false, // disable default searchbar
+  homeButton: false, // disable home button
+  sceneModePicker: false, // disable 2d/3d toggler
   animation: false,
   timeline: false,
   navigationHelpButton: false,
