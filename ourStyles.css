@@ -1,48 +1,56 @@
   @import url(../Build/Cesium/Widgets/widgets.css);
 
-  html, body, #cesiumContainer {
+  #cesiumContainer {
     width: 100%;
-    height: calc(100% + 20px);
+    top: 52px;
+    height: calc(100% - 50px);
     margin: 0;
     padding: 0;
     overflow: hidden;
     position: absolute;
-    background-color: black;
   }
 
   #testSidebar {
-    display: block;
-    position: absolute;
-    /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
-    top: 50px;
-    right: 2px;
-    /* sidebar on the left */
-    /*
-    top: 10px;
-    left: 10px;
-    */
-    background: rgba(42, 42, 42, 0.8);
-    padding: 5px;
-    border-radius: 4px;
-    color: white;
-    font-family: Georgia;
-    max-width: 15%;
-    max-height: calc(100% - 100px);
-    overflow: auto;
-    z-index:1;
+      /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
+      position: absolute;
+      top: 88px;
+      right: 2px;
+      padding: 5px;
+      border-radius: 4px;
+      /* sidebar on the left
+      top: 10px;
+      left: 10px;
+      background: rgba(42, 42, 42, 0.1)!important;
+      */
+      font-family: Georgia;
+      max-width: 20%;
+      min-width: 200px;
+      max-height: calc(100% - 100px);
+      overflow: auto;
+      z-index:1;
   }
 
-  .cesium-infoBox-iframe{
-    border:none;
-    width:100%;
-    width:calc(100% - 2px);
+
+  .panel-heading{
+      color: white;
+      background: rgba(158, 188, 218, 0.5)!important;
+  }
+
+  .panel-body {
+      color: whitesmoke;
+      background: rgba(0, 0, 0, 0.9)!important;
+  }
+
+  .cesium-infoBox-iframe {
+    top: 103px;
     overflow: auto;
-    min-height:750px
+    min-height:700px;
+    width: calc(100% - 2px);
   }
 
   .cesium-infoBox-visible {
-    top: 50px;
-    right: calc(15% + 15px);
+    top: 103px;
+    right: calc(20% + 5px);
     transform: translate(0,0);
     visibility: visible;
     opacity: 1;
@@ -51,7 +59,11 @@
     transition-duration: 0.2s, 0.2s;
     transition-timing-function: ease-out, ease-out;
     transition-delay: initial;
-    z-index:9;
+    z-index:2;
+  }
+
+  .cesium-viewer-toolbar {
+      z-index:2;
   }
 
   .cesium-baseLayerPicker-dropDown-visible {
@@ -66,16 +78,12 @@
     transition: opacity 0.2s ease-out,transform 0.2s ease-out;
   }
 
-  .navbar-brand {
-    padding: 0px;
-  }
-
   .navbar-wrapper {
     position: absolute;
     top: 0;
-    right 0;
+    right: 0;
     width: 100%;
-    left 0;
+    left: 0;
     z-index: 20;
   }
 
@@ -83,18 +91,27 @@
     width: 100%;
   }
 
+  .navbar .navbar-nav {
+      display: inline-block;
+      float: none;
+  }
+
+  .navbar .navbar-collapse {
+      text-align: center;
+  }
+
   .navbar-brand>img {
     height: 100%;
-    padding: 3px;
+    padding: 1px;
   }
 
   #fixedbox {
     position: fixed;
-    bottom: 10px;
+    top: 60px;
     left: 10px;
     background-color: rgba(42, 42, 42, 0.8);
     color: whitesmoke;
-    padding: 5px;
+    padding: 15px;
     border-radius: 4px;
     font-family: monospace;
     font-size: 20px;

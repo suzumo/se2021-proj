@@ -13,73 +13,176 @@
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> <!-- Testing accordion stuff -->
-  <link rel="stylesheet" href="jquery-ui-themes-1.12.1/jquery-ui.css"/> <!-- some default jquery.ui stylesheet -->
   <link rel="stylesheet" href="ourStyles.css">
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+  <!--
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="jquery-ui-themes-1.12.1/jquery-ui.css"/>
+  -->
 
 </head>
 
 <body>
-    <nav class="navbar navbar-default", style="margin: 0;">
+
+    <!-- navigation bar -->
+  <nav class="navbar navbar-default navbar-fixed-top" style="margin: 0;">
     <div class="container-fluid">
 
       <div class="navbar-header">
-        <a class = "navbar-brand">
-          <img  src="img/daily_planet_logo.jpg" alt="Daily Planet Logo" style="width:180px;height:45px;">
+        <a class="navbar-brand" href="#">
+          <img  src="img/daily_planet_logo.jpg" alt="Daily Planet Logo" style="width:180px;height:50px;position:fixed;top:2px;">
         </a>
       </div>
 
-      <ul class="nav navbar-nav">
-        <form class="navbar-form" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control"placeholder="Search for a country">
-        </div>
-          <button type="submit" class="btn btn-default"> Submit</button>
-        </form>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <button type="button" class="btn btn-default"> Tutorial </button>
-        <button type="button" class="btn btn-default"> Contact Us </button>
-      </ul>
+      <!-- <ul class="nav navbar-nav"> -->
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search for a country">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </ul>
 
+        <ul class="nav navbar-nav navbar-right">
+          <li><a role="button">Log In</a></li>
+          <li><a role="button">Sign Up</a></li>
+          <li><a role="button">Tutorial</a></li>
+          <li><a role="button">Feedback</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
+
+    <!-- Cesium globe -->
   <div id="cesiumContainer"></div>
-  <!-- TESTING SIDEBAR ACCORDION -->
-  <div id="testSidebar">
-    <h3 id="news0title"></h3> <!-- href is necessary for .accordion() function of jquery-->
-    <div id="news0abstract"><p></p></div>
-    <h3 id="news1title"></h3>
-    <div id="news1abstract"><p></p></div>
-    <h3 id="news2title"></h3>
-    <div id="news2abstract"><p></p></div>
-    <h3 id="news3title"></h3>
-    <div id="news3abstract"><p></p></div>
-    <h3 id="news4title"></h3>
-    <div id="news4abstract"><p></p></div>
-    <h3 id="news5title"></h3>
-    <div id="news5abstract"><p></p></div>
-    <h3 id="news6title"></h3>
-    <div id="news6abstract"><p></p></div>
-    <h3 id="news7title"></h3>
-    <div id="news7abstract"><p></p></div>
-    <h3 id="news8title"></h3>
-    <div id="news8abstract"><p></p></div>
-    <h3 id="news9title"></h3>
-    <div id="news9abstract"><p></p></div>
-  </div>
+
+    <!-- news bar -->
+  <div id="testSidebar" class="panel-group" role="tablist" aria-multiselectable="true">
+    <h2 style="text-align:center;color:whitesmoke;">Top Ten News</h2>
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading0" role="tab">
+        <h4 class="panel-title">
+          <a id="news0title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse0" aria-expanded="false" aria-controls="collapse0"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+        <div class="panel-body" id="news0abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading1" role="tab">
+        <h4 class="panel-title">
+          <a id="news1title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse1" aria-expanded="false" aria-controls="collapse1"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+        <div class="panel-body" id="news1abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading2" role="tab">
+        <h4 class="panel-title">
+          <a id="news2title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse2" aria-expanded="false" aria-controls="collapse2"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+        <div class="panel-body" id="news2abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading3" role="tab">
+        <h4 class="panel-title">
+          <a id="news3title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse3" aria-expanded="false" aria-controls="collapse3"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+        <div class="panel-body" id="news3abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading4" role="tab">
+        <h4 class="panel-title">
+          <a id="news4title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse4" aria-expanded="false" aria-controls="collapse4"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+        <div class="panel-body" id="news4abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading5" role="tab">
+        <h4 class="panel-title">
+          <a id="news5title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse5" aria-expanded="false" aria-controls="collapse5"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+        <div class="panel-body" id="news5abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading6" role="tab">
+        <h4 class="panel-title">
+          <a id="news6title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse6" aria-expanded="false" aria-controls="collapse6"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+        <div class="panel-body" id="news6abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading7" role="tab">
+        <h4 class="panel-title">
+          <a id="news7title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse7" aria-expanded="false" aria-controls="collapse7"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+        <div class="panel-body" id="news7abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading8" role="tab">
+        <h4 class="panel-title">
+          <a id="news8title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse8" aria-expanded="false" aria-controls="collapse8"></a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+        <div class="panel-body" id="news8abstract"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" id="heading9" role="tab">
+        <h4 class="panel-title">
+          <a id="news9title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+          </a>
+        </h4> <!-- href is necessary for .accordion() function of jquery-->
+      </div>
+      <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+        <div class="panel-body" id="news9abstract"></div>
+      </div>
+    </div>
+</div>
 
   <script src="scripts/map.js"></script>
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
-</body>
 
   <div id="fixedbox">
+    <div id="date"></div>
     <div id="time"></div>
-    <p>Location: &emsp; Global</p>
+    <div id="focus">&emsp; &emsp; Focus: Global</div>
   </div>
-  <a href=""><img src="img/globe.png" id="globalview" alt="globe" style="width:50px;height:50px"></a>
-  <a href=""><img src="img/africa.png" alt="country" id="countryview" style="width:50px;height:50px"></a>
+
+</body>
 </html>

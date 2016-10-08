@@ -11,15 +11,15 @@ var viewModels = Cesium.createDefaultImageryProviderViewModels();
 var viewer = new Cesium.Viewer('cesiumContainer', {
   fullscreenButton: false, // disable fullscreen button
   geocoder: false, // disable default searchbar
-  homeButton: false, // disable home button
-  sceneModePicker: false, // disable 2d/3d toggler
+  homeButton: true, // disable home button
+  sceneModePicker: true, // disable 2d/3d toggler
   animation: false,
   timeline: false,
-  navigationHelpButton: false,
+  navigationHelpButton: false
   // set default imagery to bing maps aerial with labels
-  selectedImageryProviderViewModel: viewModels[2],
+  //selectedImageryProviderViewModel: viewModels[2],
   // set map to be viewed in 2d by default
-  sceneMode: Cesium.SceneMode.SCENE2D,
+  //sceneMode: Cesium.SceneMode.SCENE2D
 });
 
 // function for getting real-time clock
@@ -29,7 +29,8 @@ function startTime() {
   var date = [today.getDate(), today.getMonth(), today.getFullYear()].join('/')
   m = checkTime(today.getMinutes());
   s = checkTime(today.getSeconds());
-  document.getElementById('time').innerHTML = "Local Time: " + h + ":" + m + ":" + s + " " + date;
+  document.getElementById('date').innerHTML = "Local Date: " + date;
+  document.getElementById('time').innerHTML = "Local Time: " + h + ":" + m + ":" + s;
   var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {

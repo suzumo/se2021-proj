@@ -24,11 +24,21 @@ setTimeout(function(){
         var k = (response[j].geo_facet.length -1).toString();
         getLocationFromBingAPI(coord[i], response[j].geo_facet[k]);
     }
-}, 1000); // delay function by 1000ms to allow get info from NYT
+}, 2000); // delay function by 1000ms to allow get info from NYT
 
 var iframe = document.getElementsByClassName('cesium-infoBox-iframe')[0];
 iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms'); 
-
+var colors = [ Cesium.Color.CORAL,
+               Cesium.Color.MEDIUMPURPLE,
+               Cesium.Color.PALEGREEN,
+               Cesium.Color.HOTPINK,
+               Cesium.Color.ROYALBLUE,
+               Cesium.Color.SANDYBROWN,
+               Cesium.Color.TOMATO,
+               Cesium.Color.GOLD,
+               Cesium.Color.CYAN,
+               Cesium.Color.AQUAMARINE
+             ];
 // second loop to put pins on map
 setTimeout(function(){
     for (i = 0; i < 10; i++) {
@@ -37,7 +47,7 @@ setTimeout(function(){
             name: "New York Times",
             position: Cesium.Cartesian3.fromDegrees(coord[i][0], coord[i][1]),
             billboard: {
-                image: pinBuilder.fromText((i+1).toString(), Cesium.Color.fromRandom({alpha : 1.0}), 48).toDataURL(),
+                image: pinBuilder.fromText((i+1).toString(), colors[i], 48).toDataURL(),
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM
             },
             description: '<embed src='+response[j].url+' height=99% width=100%> </embed>',
@@ -58,9 +68,9 @@ setTimeout(function(){
         var k = (response[j].geo_facet.length -1).toString();
         console.log("complete "+i+" news located at "+response[j].geo_facet[k]);
         console.log("The title of article " +i+ " is: " +response[i].title);
-        console.log(coord[i][0]+ " "+coord[i][1]);
+        console.log("location of news " +i+": " + coord[i][0]+ " "+coord[i][1]);
     }
-}, 2000); // delay function by 2000ms to get loc info from Bing
+}, 5000); // delay function by 2000ms to get loc info from Bing
 
 // testing function to see if everything is working as expected -- prints in browser console
 setTimeout(function() {
