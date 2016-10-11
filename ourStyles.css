@@ -12,7 +12,7 @@
   #testSidebar {
       /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
       position: absolute;
-      top: 88px;
+      top: 50px;
       left: 2px;
       padding: 5px;
       border-radius: 4px;
@@ -29,6 +29,11 @@
       z-index:1;
   }
 
+  .article-numbers {
+    height: 19px;
+    width: 21px;
+    padding: 0px 5px 1px 0px;
+  }
   .panel-heading{
       color: white;
       background: rgba(158, 188, 218, 0.5)!important;
@@ -61,8 +66,8 @@
   }
 
   .cesium-viewer-toolbar {
-    top:55px;
-    z-index:2;
+    top: 55px;
+    z-index: 3;
   }
 
   .cesium-baseLayerPicker-dropDown-visible {
@@ -77,15 +82,6 @@
     transition: opacity 0.2s ease-out,transform 0.2s ease-out;
   }
 
-  .navbar-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    left: 0;
-    z-index: 1;
-  }
-
   .navbar-wrapper .navbar {
     width: 100%;
   }
@@ -97,10 +93,6 @@
 
   .navbar .navbar-collapse {
       text-align: center;
-  }
-
-  .navbar-brand>img {
-    height: 100%;
   }
 
   #fixedbox {

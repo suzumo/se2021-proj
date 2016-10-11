@@ -28,17 +28,17 @@ setTimeout(function(){
 
 var iframe = document.getElementsByClassName('cesium-infoBox-iframe')[0];
 iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms'); 
-var colors = [ Cesium.Color.CORAL,
-               Cesium.Color.MEDIUMPURPLE,
-               Cesium.Color.PALEGREEN,
-               Cesium.Color.HOTPINK,
-               Cesium.Color.ROYALBLUE,
-               Cesium.Color.SANDYBROWN,
-               Cesium.Color.TOMATO,
+var colors = [ Cesium.Color.RED,
+               Cesium.Color.DARKORANGE,
                Cesium.Color.GOLD,
-               Cesium.Color.CYAN,
-               Cesium.Color.AQUAMARINE
-             ];
+               Cesium.Color.GREENYELLOW,
+               Cesium.Color.DARKTURQUOISE,
+               Cesium.Color.DEEPSKYBLUE,
+               Cesium.Color.INDIGO,
+               Cesium.Color.MEDIUMORCHID,
+               Cesium.Color.HOTPINK,
+               Cesium.Color.GREY
+];
 // second loop to put pins on map
 setTimeout(function(){
     for (i = 0; i < 10; i++) {
@@ -56,7 +56,7 @@ setTimeout(function(){
         });
 
         // populate accordion menu
-        var newstitle = (i+1) + ". " + response[j].title;
+        var newstitle = '<img src=\"img\/' +(i+1)+ '.png\" class=\"article-numbers\" alt=\"' +(i+1)+ '\">' + response[j].title;
         var newsabstract = "";
         if (response[j].multimedia.length != 0) {
             newsabstract += '<img src=\"'+response[j].multimedia["0"].url+'\" align=\"right\" style=\"padding-left: 5px\">';
