@@ -2,6 +2,7 @@
 
   #cesiumContainer {
     width: 100%;
+    height:100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -12,7 +13,7 @@
       /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
       position: absolute;
       top: 88px;
-      right: 2px;
+      left: 2px;
       padding: 5px;
       border-radius: 4px;
       /* sidebar on the left
@@ -26,10 +27,6 @@
       max-height: calc(100% - 100px);
       overflow: auto;
       z-index:1;
-  }
-
-  .cesium-viewer-toolbar {
-    top:55px;
   }
 
   .panel-heading{
@@ -64,7 +61,8 @@
   }
 
   .cesium-viewer-toolbar {
-      z-index:2;
+    top:55px;
+    z-index:2;
   }
 
   .cesium-baseLayerPicker-dropDown-visible {
@@ -85,7 +83,7 @@
     right: 0;
     width: 100%;
     left: 0;
-    z-index: 20;
+    z-index: 1;
   }
 
   .navbar-wrapper .navbar {
@@ -103,13 +101,12 @@
 
   .navbar-brand>img {
     height: 100%;
-    padding: 1px;
   }
 
   #fixedbox {
     position: fixed;
-    top: 60px;
-    left: 10px;
+    bottom: 60px;
+    right: 10px;
     background-color: rgba(42, 42, 42, 0.8);
     color: whitesmoke;
     padding: 15px;
