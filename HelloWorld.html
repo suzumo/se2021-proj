@@ -27,8 +27,8 @@
 <body>
 
     <!-- navigation bar -->
-  <nav class="navbar navbar-default navbar-fixed-top" style="margin: 0;">
-    <div class="container-fluid">
+  <nav id="navbar" class="navbar navbar-default navbar-fixed-top" style="margin:0px;background:none;">
+    <div class="container-fluid" style="margin:0px">
 
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
@@ -177,7 +177,9 @@
 
   <script src="scripts/map.js"></script>
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
-
+  <script>
+    $('#navbar').slidingPanel();
+  </script>
   <div id="fixedbox">
     <div id="date"></div>
     <div id="time"></div>
