@@ -50,7 +50,7 @@ setTimeout(function(){
                 image: pinBuilder.fromText((i+1).toString(), colors[i], 48).toDataURL(),
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM
             },
-            description: '<embed src='+response[j].url+' height=99% width=100%> </embed>',
+            description: '<embed src='+response[j].url+' height=99% width=100% value=\"' +i+ '\"> </embed>',
             //description: '<embed src=\"'+response[j].short_url+'\"></embed>',
             outline : true
         });

@@ -71,7 +71,7 @@
       <div class="panel-heading" id="heading0" role="tab" value="0">
         <h4 class="panel-title">
           <a id="news0title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse0" aria-expanded="false" aria-controls="collapse0"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
         <div class="panel-body" id="news0abstract"></div>
@@ -82,7 +82,7 @@
       <div class="panel-heading" id="heading1" role="tab" value="1">
         <h4 class="panel-title">
           <a id="news1title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse1" aria-expanded="false" aria-controls="collapse1"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
         <div class="panel-body" id="news1abstract"></div>
@@ -93,7 +93,7 @@
       <div class="panel-heading" id="heading2" role="tab" value="2">
         <h4 class="panel-title">
           <a id="news2title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse2" aria-expanded="false" aria-controls="collapse2"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
         <div class="panel-body" id="news2abstract"></div>
@@ -104,7 +104,7 @@
       <div class="panel-heading" id="heading3" role="tab" value="3">
         <h4 class="panel-title">
           <a id="news3title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse3" aria-expanded="false" aria-controls="collapse3"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
         <div class="panel-body" id="news3abstract"></div>
@@ -115,7 +115,7 @@
       <div class="panel-heading" id="heading4" role="tab" value="4">
         <h4 class="panel-title">
           <a id="news4title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse4" aria-expanded="false" aria-controls="collapse4"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
         <div class="panel-body" id="news4abstract"></div>
@@ -126,7 +126,7 @@
       <div class="panel-heading" id="heading5" role="tab" value="5">
         <h4 class="panel-title">
           <a id="news5title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse5" aria-expanded="false" aria-controls="collapse5"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
         <div class="panel-body" id="news5abstract"></div>
@@ -137,7 +137,7 @@
       <div class="panel-heading" id="heading6" role="tab" value="6">
         <h4 class="panel-title">
           <a id="news6title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse6" aria-expanded="false" aria-controls="collapse6"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
         <div class="panel-body" id="news6abstract"></div>
@@ -148,7 +148,7 @@
       <div class="panel-heading" id="heading7" role="tab" value="7">
         <h4 class="panel-title">
           <a id="news7title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse7" aria-expanded="false" aria-controls="collapse7"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
         <div class="panel-body" id="news7abstract"></div>
@@ -159,7 +159,7 @@
       <div class="panel-heading" id="heading8" role="tab" value="8">
         <h4 class="panel-title">
           <a id="news8title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse8" aria-expanded="false" aria-controls="collapse8"></a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
         <div class="panel-body" id="news8abstract"></div>
@@ -171,7 +171,7 @@
         <h4 class="panel-title">
           <a id="news9title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
           </a>
-        </h4> <!-- href is necessary for .accordion() function of jquery-->
+        </h4> 
       </div>
       <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
         <div class="panel-body" id="news9abstract"></div>
@@ -183,8 +183,11 @@
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
-    var selected = NaN;
-    var selected_index = NaN;
+    var selected = NaN; /* selected sidebar news article */
+    var selected_index = NaN; /* selected index of news */
+    var selected_pin = NaN; /* selected index of pin (should be equal to selected_index */
+    var posX; /* x coord of mouse */
+    var posY; /* y coord of mouse */
 
     $( function() {
       $('.panel-heading').click( function() {
@@ -196,12 +199,54 @@
           var pitch = Cesium.Math.toRadians(-30);
           var range = 10000000; // 10000km
           viewer.zoomTo(pin[selected_index], new Cesium.HeadingPitchRange(heading, pitch, range));
+          viewer.selectedEntity = undefined;
         }, 50);
       });
     });
-    </script>
 
-    <script>
+    /* function to determine position of mouse when it is called */
+    function mouse_position() {
+      var e = window.event;
+      posX = e.clientX;
+      posY = e.clientY;
+    };
+
+    /* standard function to determine the identity of topmost entity when called */
+    function pickEntity(viewer, windowPosition) {
+      var picked = viewer.scene.pick(windowPosition);
+      var id = Cesium.defaultValue(picked.id, picked.primitive.id);
+      if (id instanceof Cesium.Entity) {
+          return id;
+      }
+      return undefined;
+    };
+
+    /* upon clicking cesium container, determines the identity of the topmost entity */
+    $('#cesiumContainer').click( function() {
+      console.log("cesium got clicked");
+      mouse_position();
+      setTimeout(function() {
+        var deactivate = $('.active');
+        console.log("to deactivate " + deactivate.attr('value'));
+        deactivate.siblings('.panel-collapse').removeClass('in');
+        deactivate.removeClass('active');
+
+        console.log("selected pin id is " + index);
+        console.log("selected news article id is " + selected_index);
+
+        selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
+        if (selected_pin == NaN) {
+
+        } else {
+          var index = selected_pin._billboardIndex;
+          var activate = $($('#testSidebar').children()[index+1]);
+          console.log("to activate " + activate.attr('value'));
+          activate.find('.panel-heading').addClass('active');
+          activate.find('.panel-collapse').addClass('in');
+        }
+      }, 50);
+    });
+
     $(document).ready(function() {
       $('.panel-collapse').on('show.bs.collapse', function () {
         $(this).siblings('.panel-heading').addClass('active');
@@ -211,11 +256,11 @@
         $(this).siblings('.panel-heading').removeClass('active');
       });
 
-      /* TODO: Ask Liam why this function won't work but will work in console :( */
       /* function to link "read more" icon in news list to pop articles and highlight pins */
-      $('.glyphicon-new-window').click( function() {
-        console.log("1 got clicked!");
+      $('#testSidebar').click( function() {
+        console.log("testSidebar got clicked!");
         viewer.selectedEntity = pin[selected_index];
+        console.log("article selected is "+selected_index);
       });
     });
     </script>
