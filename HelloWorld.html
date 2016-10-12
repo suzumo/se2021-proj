@@ -64,7 +64,7 @@
   <div id="testSidebar" class="panel-group" role="tablist" aria-multiselectable="true">
     <h2 style="text-align:center;color:whitesmoke;">Top Ten News</h2>
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading0" role="tab">
+      <div class="panel-heading" id="heading0" role="tab" value="0">
         <h4 class="panel-title">
           <a id="news0title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse0" aria-expanded="false" aria-controls="collapse0"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -75,7 +75,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading1" role="tab">
+      <div class="panel-heading" id="heading1" role="tab" value="1">
         <h4 class="panel-title">
           <a id="news1title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse1" aria-expanded="false" aria-controls="collapse1"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -86,7 +86,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading2" role="tab">
+      <div class="panel-heading" id="heading2" role="tab" value="2">
         <h4 class="panel-title">
           <a id="news2title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse2" aria-expanded="false" aria-controls="collapse2"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -97,7 +97,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading3" role="tab">
+      <div class="panel-heading" id="heading3" role="tab" value="3">
         <h4 class="panel-title">
           <a id="news3title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse3" aria-expanded="false" aria-controls="collapse3"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -108,7 +108,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading4" role="tab">
+      <div class="panel-heading" id="heading4" role="tab" value="4">
         <h4 class="panel-title">
           <a id="news4title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse4" aria-expanded="false" aria-controls="collapse4"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -119,7 +119,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading5" role="tab">
+      <div class="panel-heading" id="heading5" role="tab" value="5">
         <h4 class="panel-title">
           <a id="news5title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse5" aria-expanded="false" aria-controls="collapse5"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -130,7 +130,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading6" role="tab">
+      <div class="panel-heading" id="heading6" role="tab" value="6">
         <h4 class="panel-title">
           <a id="news6title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse6" aria-expanded="false" aria-controls="collapse6"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -141,7 +141,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading7" role="tab">
+      <div class="panel-heading" id="heading7" role="tab" value="7">
         <h4 class="panel-title">
           <a id="news7title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse7" aria-expanded="false" aria-controls="collapse7"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -152,7 +152,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading8" role="tab">
+      <div class="panel-heading" id="heading8" role="tab" value="8">
         <h4 class="panel-title">
           <a id="news8title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse8" aria-expanded="false" aria-controls="collapse8"></a>
         </h4> <!-- href is necessary for .accordion() function of jquery-->
@@ -163,7 +163,7 @@
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" id="heading9" role="tab">
+      <div class="panel-heading" id="heading9" role="tab" value="9">
         <h4 class="panel-title">
           <a id="news9title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
           </a>
@@ -177,7 +177,29 @@
 
   <script src="scripts/map.js"></script>
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
+  <script>
+    /* functions to allow zoom to pin upon selecting side panel news */
+    $( function() {
+      $('.panel-heading').click( function() {
+        setTimeout(function() {
+          var selected = $('.active');
+          var selected_index = selected.attr('value');
+          console.log("selected number: " + selected_index);
+          viewer.zoomTo(pin[selected_index]);
+        }, 50);
+      })
+    });
 
+    $(document).ready(function() {
+      $('.panel-collapse').on('show.bs.collapse', function () {
+        $(this).siblings('.panel-heading').addClass('active');
+      });
+
+      $('.panel-collapse').on('hide.bs.collapse', function () {
+        $(this).siblings('.panel-heading').removeClass('active');
+      });
+    });
+  </script>
 
   <div id="fixedbox">
     <div id="date"></div>
