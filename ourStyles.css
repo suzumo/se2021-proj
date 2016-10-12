@@ -10,23 +10,19 @@
   }
 
   #testSidebar {
-      /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
-      position: absolute;
-      top: 50px;
-      left: 2px;
-      padding: 5px;
-      border-radius: 4px;
-      /* sidebar on the left
-      top: 10px;
-      left: 10px;
-      background: rgba(42, 42, 42, 0.1)!important;
-      */
-      font-family: Georgia;
-      max-width: 20%;
-      min-width: 200px;
-      max-height: calc(100% - 100px);
-      overflow: auto;
-      z-index:1;
+    /* alternative: newsbar moved to the right side (hacky method - have to guess numbers)  */
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    padding: 0 5px 5px 5px;
+    border-radius: 4px;
+    background: rgba(42, 42, 42, 0.1)!important;
+    overflow: auto;
+    font-family: Georgia;
+    max-width: 20%;
+    min-width: 250px;
+    max-height: calc(100% - 50px);
+    z-index:1;
   }
 
   .article-numbers {
@@ -37,31 +33,32 @@
 
   /* news panels default */
   .panel-heading {
-      color: white;
-      background: rgba(158, 188, 218, 0.5);
+    color: white;
+    background: rgba(158, 188, 218, 0.5);
   }
 
   /* news panels on select */
   .panel-heading.on {
-      background-color: dodgerblue;
+    background-color: dodgerblue;
   }
 
   /* news panels body on expansion */
   .panel-body {
-      color: whitesmoke;
-      background: rgba(0, 0, 0, 0.9);
+    color: whitesmoke;
+    background: rgba(0, 0, 0, 0.9);
   }
 
   .cesium-infoBox-iframe {
-    top: 103px;
-    overflow: auto;
-    min-height:700px;
+    overflow: hidden;
+    min-height:745px;
     width: calc(100% - 2px);
   }
 
   .cesium-infoBox-visible {
-    top: 103px;
-    right: calc(20% + 5px);
+    top: 112px;
+    left: calc(20% + 5px);
+    width: 40%;
+    min-width:350px;
     transform: translate(0,0);
     visibility: visible;
     opacity: 1;
@@ -74,7 +71,8 @@
   }
 
   .cesium-viewer-toolbar {
-    top: 55px;
+    top: 5px;
+    right:146px;
     z-index: 3;
   }
 
@@ -90,17 +88,29 @@
     transition: opacity 0.2s ease-out,transform 0.2s ease-out;
   }
 
-  .navbar-wrapper .navbar {
+  .navbar {
     width: 100%;
+    background:none;
+    border:none!important;
+    z-index:2;
+  }
+
+  .navbar-form .navbar-left {
+      left:5px;
   }
 
   .navbar .navbar-nav {
-      display: inline-block;
-      float: none;
+    display: inline-block;
+    float: none;
   }
 
   .navbar .navbar-collapse {
-      text-align: center;
+    text-align: center;
+  }
+
+  .read-more {
+    padding: 0px 0px 0px 5px;
+    border:none;
   }
 
   #fixedbox {

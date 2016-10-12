@@ -13,9 +13,9 @@
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
-  <link rel="stylesheet" href="ourStyles.css">
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="ourStyles.css">
 
   <!--
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
@@ -27,7 +27,7 @@
 <body>
 
     <!-- navigation bar -->
-  <nav id="navbar" class="navbar navbar-default navbar-fixed-top" style="background:none;border:none!important">
+  <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
@@ -39,17 +39,21 @@
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <form class="navbar-form navbar-left" role="search" style="width:20%;position:absolute;left:0px">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search for country or topic">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default">Go!</button>
         </form>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-default navbar-btn" id="tutorial" style="background:none;border:none;box-shadow:none;color:whitesmoke;">
-            <span class="glyphicon glyphicon-blackboard" aria-hidden="true" title="How-To-Use Tutorial"></span>
+          <li><button type="button" class="cesium-button cesium-toolbar-button" id="tutorial" title="How-to-use Tutorial" style="top:5px">
+            <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
+              <span class="glyphicon glyphicon-blackboard" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
+            </svg:svg>
           </button></li>
-          <li><button type="button" class="btn btn-default navbar-btn" id="feedback-btn" style="background:none;border:none;box-shadow:none;color:whitesmoke;padding-right: 20px">
-            <span class="glyphicon glyphicon-envelope" aria-hidden="true" title="Send feedback"></span>
+          <li><button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" title="Send feedback" style="top:5px">
+            <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="fone-size:2em; top:6px"></span>
+            </svg:svg>
           </button></li>
           <li><button type="button" class="btn btn-default navbar-btn" id="sign-in-btn">Sign In</button></li>
         </ul>
@@ -179,17 +183,25 @@
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
+    var selected = NaN;
+    var selected_index = NaN;
+
     $( function() {
       $('.panel-heading').click( function() {
         setTimeout(function() {
-          var selected = $('.active');
-          var selected_index = selected.attr('value');
+          selected = $('.active');
+          selected_index = selected.attr('value');
           console.log("selected number: " + selected_index);
-          viewer.zoomTo(pin[selected_index]);
+          var heading = Cesium.Math.toRadians(0);
+          var pitch = Cesium.Math.toRadians(-30);
+          var range = 10000000; // 10000km
+          viewer.zoomTo(pin[selected_index], new Cesium.HeadingPitchRange(heading, pitch, range));
         }, 50);
-      })
+      });
     });
+    </script>
 
+    <script>
     $(document).ready(function() {
       $('.panel-collapse').on('show.bs.collapse', function () {
         $(this).siblings('.panel-heading').addClass('active');
@@ -198,8 +210,15 @@
       $('.panel-collapse').on('hide.bs.collapse', function () {
         $(this).siblings('.panel-heading').removeClass('active');
       });
+
+      /* TODO: Ask Liam why this function won't work but will work in console :( */
+      /* function to link "read more" icon in news list to pop articles and highlight pins */
+      $('.glyphicon-new-window').click( function() {
+        console.log("1 got clicked!");
+        viewer.selectedEntity = pin[selected_index];
+      });
     });
-  </script>
+    </script>
 
   <div id="fixedbox">
     <div id="date"></div>
