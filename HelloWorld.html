@@ -37,11 +37,11 @@
 
       <!-- <ul class="nav navbar-nav"> -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
-        <form class="navbar-form navbar-left" role="search" style="width:20%;position:absolute;left:0px">
+        <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search for country or topic">
+            <input type="text" class="form-control" id="search-word" placeholder="Search for country or topic">
           </div>
-          <button type="submit" class="btn btn-default">Go!</button>
+          <button type="button" id="search" class="btn btn-default">Go!</button>
         </form>
 
         <ul class="nav navbar-nav navbar-right">
@@ -52,7 +52,7 @@
           </button></li>
           <li><button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" title="Send feedback" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
-              <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="fone-size:2em; top:6px"></span>
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
           <li><button type="button" class="btn btn-default navbar-btn" id="sign-in-btn">Sign In</button></li>
@@ -262,6 +262,31 @@
         viewer.selectedEntity = pin[selected_index];
         console.log("article selected is "+selected_index);
       });
+    });
+    var longitude, latitude;
+    $('#search').click(function() {
+      region = document.getElementById("search-word").value;
+      console.log(region);
+      $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
+        longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
+        latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
+      });
+      setTimeout(function() {
+        console.log(longitude + " " + latitude);
+        var target_country = viewer.entities.add({
+          name: region,
+          position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
+          outline: true,
+          billboard: {
+            image: "",
+            verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+          }
+        });
+        var heading = Cesium.Math.toRadians(0);
+        var pitch = Cesium.Math.toRadians(-60);
+        var range = 10000000; // 10000km
+        viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
+      }, 300);
     });
     </script>
 

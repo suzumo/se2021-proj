@@ -96,7 +96,9 @@
   }
 
   .navbar-form .navbar-left {
-      left:5px;
+    left:5px;
+    width:20%;
+    position:absolute;
   }
 
   .navbar .navbar-nav {

@@ -15,6 +15,7 @@ function getLocationFromBingAPI(location, name) {
 
 var coord = []; // this will hold all the coordinates (longitude,latitude) of the articles in 2D array
 var pin = []; // store all pins in this array
+var region = "World"; // selected region
 
 // first loop to find coordinates for the articles first
 setTimeout(function(){

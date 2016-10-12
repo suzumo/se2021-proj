@@ -15,7 +15,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   sceneModePicker: true, // disable 2d/3d toggler
   animation: false,
   timeline: false,
-  navigationHelpButton: false
+  navigationHelpButton: true
   // set default imagery to bing maps aerial with labels
   //selectedImageryProviderViewModel: viewModels[2],
   // set map to be viewed in 2d by default
