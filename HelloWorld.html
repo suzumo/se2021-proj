@@ -183,7 +183,7 @@
   <div class="cesium-infoBox cesium-infoBox-visible twitter">
     <div class="cesium-infoBox-title">Twitter</div>
     <button type="button" class="cesium-infoBox-close twitter-close">×</button>
-    <iframe class="cesium-infoBo-iframe twitter-iframe" src="about:blank" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+    <iframe id="twitter-iframe" class="cesium-infoBox-iframe twitter-iframe" src="about:blank" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
     </iframe>
   </div>
 
@@ -249,6 +249,7 @@
         deactivate.siblings('.panel-collapse').removeClass('in');
         deactivate.removeClass('active');
         $('.twitter-btn').hide();
+        $('.twitter').hide();
 
         /* find out what pin is selected and activate corresponding sidepanel's news article */
         selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
@@ -281,20 +282,23 @@
         selected_index = undefined;
         $('.twitter-btn').hide();
         $('.twitter').hide();
-
       });
 
       /* function to link "read more" icon in news list to pop articles and highlight pins */
       $('#testSidebar').click( function() {
         console.log("testSidebar got clicked!");
         $('.twitter-btn').hide();
+        $('.twitter').hide();
 
         viewer.selectedEntity = pin[selected_index];
-        if (selected_index != undefined) {
-          window.setTimeout(function () {
-            $('.twitter-btn').show();
-          }, 200);
-        }
+        setTimeout(function(){
+//        console.log("twitter should show: " + ($('.cesium-infoBox-visible').not('.twitter').length > 0));
+          if (selected_index != undefined && ($('.cesium-infoBox-visible').not('.twitter').length > 0)) {
+            setTimeout(function () {
+              $('.twitter-btn').show();
+            },100);
+          }
+        }, 100);
         console.log("article selected is "+selected_index);
       });
     });
@@ -323,6 +327,7 @@
         var range = 7500000; // viewing at 7500km from ground
         viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
         getFromNYTByCountry(region, populateSidebar);
+        document.getElementById('focus').innerHTML = "Focus: " + region;
       });
     });
 
@@ -330,8 +335,10 @@
     $('.cesium-home-button').click(function(){
       /* empty search bar empty */
       $('#search-word').val("");
-      region = "the World";
+      region = "World";
       getFromNYT(populateSidebar);
+      document.getElementById('focus').innerHTML = "Focus: " + region;
+
     });
     $('.cesium-infoBox-close').not('.twitter-close').click(function () {
       $('.twitter-btn').hide();
@@ -346,18 +353,36 @@
     /* twitter button opens twitter window */
     $('.twitter-btn').click(function() {
       console.log("twitter button pressed!");
-      $('.twitter').toggle();
+      $('.twitter').toggle(function(){
+        if ($('.twitter').is(":visible")) {
+          populateTwitter();
+        }
+      });
     })
 
     $('.twitter-close').click(function() {
       $('.twitter').hide();
     })
+
+    function populateTwitter() {
+      var country = response[selected_index].geo_facet[0];
+      var words = response[selected_index].title.split(/[^\w\s]| /);
+      var loc = 'https://mobile.twitter.com/search?q=' + country;
+      /* add one more word over 3 char's in length from title */
+      for (i = 0; i < words.length; i++) {
+        if ((words[i].length > 4) && (words[i] !== country)) {
+          loc += "+"+words[i];
+          break;
+        }
+      }
+      $('#twitter-iframe').attr('src', loc);
+    }
     </script>
 
   <div id="fixedbox">
     <div id="date"></div>
     <div id="time"></div>
-    <div id="focus">&emsp; &emsp; Focus: Global</div>
+    <div id="focus">Focus: World</div>
   </div>
 
 </body>

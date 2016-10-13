@@ -74,7 +74,7 @@
   .twitter {
       left: auto;
       right: 5px;
-      width: 20%;
+      width: 15%;
       height: 500px;
   }
 
@@ -86,7 +86,14 @@
       left: calc(20% + 37px) !important;
       top: 117px !important;
       padding: 0px !important;
+  }
 
+  .twitter-iframe {
+    height: 93%;
+    padding: 5px;
+    background-color: white;
+    background-clip: content-box;
+    min-height: 470px;
   }
 
   .cesium-viewer-toolbar {
