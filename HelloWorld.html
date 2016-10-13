@@ -16,7 +16,7 @@
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="ourStyles.css">
-
+  <script>var region = "the World"; // selected region</script>
   <!--
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="jquery-ui-themes-1.12.1/jquery-ui.css"/>
@@ -37,11 +37,11 @@
 
       <!-- <ul class="nav navbar-nav"> -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
-        <form class="navbar-form navbar-left" role="search">
+        <form id="searchForm" class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" id="search-word" placeholder="Search for country or topic">
           </div>
-          <button type="button" id="search" class="btn btn-default">Go!</button>
+          <button type="submit" id="search" class="btn btn-default">Go!</button>
         </form>
 
         <ul class="nav navbar-nav navbar-right">
@@ -65,7 +65,7 @@
   <div id="cesiumContainer"></div>
 
     <!-- news bar -->
-  <div id="testSidebar" class="panel-group" role="tablist" aria-multiselectable="true">
+  <div id="testSidebar" style="opacity:0;" class="panel-group" role="tablist" aria-multiselectable="true">
     <h2 style="text-align:center;color:whitesmoke;">Top Ten News</h2>
     <div class="panel panel-default">
       <div class="panel-heading" id="heading0" role="tab" value="0">
@@ -177,15 +177,28 @@
         <div class="panel-body" id="news9abstract"></div>
       </div>
     </div>
-</div>
+  </div>
 
+    <!-- twitter -->
+  <div class="cesium-infoBox cesium-infoBox-visible twitter">
+    <div class="cesium-infoBox-title">Twitter</div>
+    <button type="button" class="cesium-infoBox-close twitter-close">×</button>
+    <iframe class="cesium-infoBo-iframe twitter-iframe" src="about:blank" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+    </iframe>
+  </div>
+
+  <button type="button" class="cesium-button cesium-infoBox-camera twitter-btn" id="twitter-btn" title="Read about this on Twitter">
+    <img src="img/Twitter.svg" width="18" style="position:relative;top:-2px">
+  </button>
+
+    <!-- more scripts... -->
   <script src="scripts/map.js"></script>
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
-    var selected = NaN; /* selected sidebar news article */
-    var selected_index = NaN; /* selected index of news */
-    var selected_pin = NaN; /* selected index of pin (should be equal to selected_index */
+    var selected = undefined; /* selected sidebar news article */
+    var selected_index = undefined; /* selected index of news */
+    var selected_pin = undefined; /* selected index of pin (should be equal to selected_index */
     var posX; /* x coord of mouse */
     var posY; /* y coord of mouse */
 
@@ -235,6 +248,7 @@
         console.log("to deactivate " + deactivate.attr('value'));
         deactivate.siblings('.panel-collapse').removeClass('in');
         deactivate.removeClass('active');
+        $('.twitter-btn').hide();
 
         /* find out what pin is selected and activate corresponding sidepanel's news article */
         selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
@@ -242,10 +256,14 @@
           console.log(" --ignoring: no pin was selected");
         } else {
           var index = selected_pin._id;
+          selected_index = index;
           var activate = $($('#testSidebar').children()[index+1]);
           console.log("to activate " + activate.attr('value'));
           activate.find('.panel-heading').addClass('active');
           activate.find('.panel-collapse').addClass('in');
+          setTimeout(function(){
+            $('.twitter-btn').show();
+          }, 200);
           /* activate selected pin's news article */
           console.log(" --selected pin id is " + index);
           console.log(" --selected news article id is " + selected_index);
@@ -260,24 +278,36 @@
 
       $('.panel-collapse').on('hide.bs.collapse', function () {
         $(this).siblings('.panel-heading').removeClass('active');
+        selected_index = undefined;
+        $('.twitter-btn').hide();
+        $('.twitter').hide();
+
       });
 
       /* function to link "read more" icon in news list to pop articles and highlight pins */
       $('#testSidebar').click( function() {
         console.log("testSidebar got clicked!");
+        $('.twitter-btn').hide();
+
         viewer.selectedEntity = pin[selected_index];
+        if (selected_index != undefined) {
+          window.setTimeout(function () {
+            $('.twitter-btn').show();
+          }, 200);
+        }
         console.log("article selected is "+selected_index);
       });
     });
+
+    /* function to make search bar orientate by name of country */
     var longitude, latitude;
-    $('#search').click(function() {
+    $('#searchForm').on("submit",function(e) {
+      e.preventDefault();
       region = document.getElementById("search-word").value;
       console.log(region);
       $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
         longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
         latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
-      });
-      setTimeout(function() {
         console.log(longitude + " " + latitude);
         var target_country = viewer.entities.add({
           name: region,
@@ -290,10 +320,38 @@
         });
         var heading = Cesium.Math.toRadians(0);
         var pitch = Cesium.Math.toRadians(-60);
-        var range = 10000000; // 10000km
+        var range = 7500000; // viewing at 7500km from ground
         viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
-      }, 300);
+        getFromNYTByCountry(region, populateSidebar);
+      });
     });
+
+    /* when home button pressed, resets news to world setting */
+    $('.cesium-home-button').click(function(){
+      /* empty search bar empty */
+      $('#search-word').val("");
+      region = "the World";
+      getFromNYT(populateSidebar);
+    });
+    $('.cesium-infoBox-close').not('.twitter-close').click(function () {
+      $('.twitter-btn').hide();
+      $('.twitter').hide();
+      selected_index = undefined;
+    });
+
+    /* twitter buttons not visible when browser starts */
+    $('.twitter-btn').hide();
+    $('.twitter').hide();
+
+    /* twitter button opens twitter window */
+    $('.twitter-btn').click(function() {
+      console.log("twitter button pressed!");
+      $('.twitter').toggle();
+    })
+
+    $('.twitter-close').click(function() {
+      $('.twitter').hide();
+    })
     </script>
 
   <div id="fixedbox">

@@ -23,6 +23,7 @@
     min-width: 250px;
     max-height: calc(100% - 50px);
     z-index:1;
+
   }
 
   .article-numbers {
@@ -68,6 +69,24 @@
     transition-timing-function: ease-out, ease-out;
     transition-delay: initial;
     z-index:2;
+  }
+
+  .twitter {
+      left: auto;
+      right: 5px;
+      width: 20%;
+      height: 500px;
+  }
+
+  .twitter-btn {
+      position: absolute;
+      z-index: 3;
+      height: 32px;
+      width: 32px;
+      left: calc(20% + 37px) !important;
+      top: 117px !important;
+      padding: 0px !important;
+
   }
 
   .cesium-viewer-toolbar {
@@ -125,16 +144,4 @@
     border-radius: 4px;
     font-family: monospace;
     font-size: 20px;
-  }
-
-  #countryview {
-    position: fixed;
-    left: 30px;
-    bottom: 110px;
-  }
-
-  #globalview {
-    position: fixed;
-    left: 100px;
-    bottom: 110px;
   }
