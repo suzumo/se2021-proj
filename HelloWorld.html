@@ -11,6 +11,7 @@
 
   <script src="../Build/Cesium/Cesium.js"></script> <!-- this is to enable cesium object -->
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
+  <script src="scripts/usgs.js"></script> <!-- enables USGS queries -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
@@ -377,6 +378,10 @@
       }
       $('#twitter-iframe').attr('src', loc);
     }
+
+    $(document).ready(function(){
+      getEarthquakesFromUSGS();
+    })
     </script>
 
   <div id="fixedbox">

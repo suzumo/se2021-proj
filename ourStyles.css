@@ -72,20 +72,20 @@
   }
 
   .twitter {
-      left: auto;
-      right: 5px;
-      width: 15%;
-      height: 500px;
+    left: auto;
+    right: 5px;
+    width: 15%;
+    height: 500px;
   }
 
   .twitter-btn {
-      position: absolute;
-      z-index: 3;
-      height: 32px;
-      width: 32px;
-      left: calc(20% + 37px) !important;
-      top: 117px !important;
-      padding: 0px !important;
+    position: absolute;
+    z-index: 3;
+    height: 32px;
+    width: 32px;
+    left: calc(20% + 37px) !important;
+    top: 117px !important;
+    padding: 0px !important;
   }
 
   .twitter-iframe {

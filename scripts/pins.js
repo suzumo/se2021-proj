@@ -91,6 +91,7 @@ setTimeout(function() {
 //    console.log(response); // print out the results from NYT in browser console
     console.log(coord); // print out the results of all the coordinates
     console.log(pin);
+    populateEarthquakes();
 }, 5000);
 
 $(function () {
