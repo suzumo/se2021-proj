@@ -41,8 +41,9 @@ function checkTime(i) {
 
 // when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
 // occur after pins populate the map)
+/*
 window.onload = function () {
-  startTime();
+
   // finally, accordion-ify the sidebar
   $(function() {
     $("#testSidebar").accordion({
@@ -56,3 +57,4 @@ window.onload = function () {
 
   });
 };
+*/

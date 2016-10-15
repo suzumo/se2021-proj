@@ -13,6 +13,7 @@
   <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- this is to enable jquery for getting json from NYT -->
   <script src="scripts/usgs.js"></script> <!-- enables USGS/earthquake queries -->
   <script src="scripts/weather.js"></script> <!-- enables Weather Underground/hurricane queries -->
+  <script src="scripts/google-trends.js"></script> <!-- Google trends -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
@@ -43,7 +44,7 @@
           <div class="form-group">
             <input type="text" class="form-control" id="search-word" placeholder="Search for country or topic">
           </div>
-          <button type="submit" id="search" class="btn btn-default" data-toggle="tooltip" title="Search">
+          <button type="submit" id="search" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Search">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </button>
         </form>
@@ -76,7 +77,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading0" role="tab" value="0">
         <h4 class="panel-title">
-          <a id="news0title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse0" aria-expanded="false" aria-controls="collapse0"></a>
+          <a id="news0title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse0" aria-expanded="false" aria-controls="collapse0" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
@@ -87,7 +88,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading1" role="tab" value="1">
         <h4 class="panel-title">
-          <a id="news1title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse1" aria-expanded="false" aria-controls="collapse1"></a>
+          <a id="news1title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse1" aria-expanded="false" aria-controls="collapse1" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
@@ -98,7 +99,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading2" role="tab" value="2">
         <h4 class="panel-title">
-          <a id="news2title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse2" aria-expanded="false" aria-controls="collapse2"></a>
+          <a id="news2title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse2" aria-expanded="false" aria-controls="collapse2" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
@@ -109,7 +110,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading3" role="tab" value="3">
         <h4 class="panel-title">
-          <a id="news3title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse3" aria-expanded="false" aria-controls="collapse3"></a>
+          <a id="news3title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse3" aria-expanded="false" aria-controls="collapse3" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
@@ -120,7 +121,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading4" role="tab" value="4">
         <h4 class="panel-title">
-          <a id="news4title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse4" aria-expanded="false" aria-controls="collapse4"></a>
+          <a id="news4title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse4" aria-expanded="false" aria-controls="collapse4" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
@@ -131,7 +132,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading5" role="tab" value="5">
         <h4 class="panel-title">
-          <a id="news5title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse5" aria-expanded="false" aria-controls="collapse5"></a>
+          <a id="news5title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse5" aria-expanded="false" aria-controls="collapse5" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
@@ -142,7 +143,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading6" role="tab" value="6">
         <h4 class="panel-title">
-          <a id="news6title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse6" aria-expanded="false" aria-controls="collapse6"></a>
+          <a id="news6title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse6" aria-expanded="false" aria-controls="collapse6" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
@@ -153,7 +154,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading7" role="tab" value="7">
         <h4 class="panel-title">
-          <a id="news7title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse7" aria-expanded="false" aria-controls="collapse7"></a>
+          <a id="news7title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse7" aria-expanded="false" aria-controls="collapse7" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
@@ -164,7 +165,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading8" role="tab" value="8">
         <h4 class="panel-title">
-          <a id="news8title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse8" aria-expanded="false" aria-controls="collapse8"></a>
+          <a id="news8title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse8" aria-expanded="false" aria-controls="collapse8" style="text-decoration:none"></a>
         </h4> 
       </div>
       <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
@@ -175,7 +176,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" id="heading9" role="tab" value="9">
         <h4 class="panel-title">
-          <a id="news9title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+          <a id="news9title" role="button" data-toggle="collapse" data-parent="#testSidebar" href="#collapse9" aria-expanded="false" aria-controls="collapse9" style="text-decoration:none">
           </a>
         </h4> 
       </div>
@@ -405,7 +406,13 @@
 
       getEarthquakesFromUSGS();
       getHurricanesFromWU();
-
+      startTime();
+      
+      /*$(function() {
+        $('.panel-heading').click( function() {
+          $(this).toggleClass('on');
+        } )
+      });*/
       // testing function to see if everything is working as expected -- prints in browser console
       setTimeout(function() {
       //console.log(response); // print out the results from NYT in browser console

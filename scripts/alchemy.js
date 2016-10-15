@@ -1,7 +1,8 @@
 /**
  * Created by Jiyong on 14-Oct-16.
  */
-var watson = require('watson-developer-cloud');
+
+/* don't know how to make this work */
 var alchemy_language = watson.alchemy_language({
     api_key: 'd0f07322ff1d42c7e254fad28d242c911e901b7c'
 })

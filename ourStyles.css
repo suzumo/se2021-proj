@@ -33,20 +33,32 @@
   }
 
   /* news panels default */
-  .panel-heading {
-    color: white;
-    background: rgba(158, 188, 218, 0.5);
+  .panel .panel-default {
+    background: none!important;
+    border: 1px solid #444!important;
+  }
+
+  .panel-heading:hover {
+    /*
+    color: #edffff!important;
+    background: rgba(48, 51, 54, 0.5)!important;
+    */
+    background:#d9e7f1;
+    box-shadow:0 0 8px #fff;
   }
 
   /* news panels on select */
-  .panel-heading.on {
-    background-color: dodgerblue;
+  .panel-heading.active {
+    color: #FFFFFF;
+    background: #4488BB;
+    box-shadow:0 0 8px #fff;
+    border-color:#ea4;
   }
 
   /* news panels body on expansion */
   .panel-body {
     color: whitesmoke;
-    background: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0,0,0,0.9);
   }
 
   .cesium-infoBox-iframe {
