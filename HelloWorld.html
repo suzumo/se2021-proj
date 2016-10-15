@@ -383,6 +383,7 @@
       /* setting tooltip appearance to bootstrap's */
       $(":button").each(function() {
         $(this).attr('data-toggle','tooltip');
+        $(this).attr('data-trigger', 'hover');
       });
       $(".cesium-toolbar-button").each(function() {
         $(this).attr('data-placement', 'bottom');
