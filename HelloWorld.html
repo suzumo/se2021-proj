@@ -51,12 +51,12 @@
 
         <!-- right navi buttons: etc -->
         <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="cesium-button cesium-toolbar-button" id="tutorial-btn" title="How-to-use Tutorial" style="top:5px">
+          <li><button type="button" class="cesium-button cesium-toolbar-button" id="tutorial-btn" data-toggle="modal" data-target="#tutorialModal" title="How-to-use Tutorial" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-blackboard" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="cesium-button cesium-toolbar-button" data-toggle="modal" data-target="#feedbackModal" data-whatever="crs.jeong@gmail.com" id="feedback-btn" title="Send feedback" style="top:5px">
+          <li><button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" data-toggle="modal" data-target="#feedbackModal" title="Send feedback" data-whatever="crs.jeong@gmail.com" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
@@ -69,8 +69,24 @@
   </nav>
 
     <!-- Sign in modal -->
-    <div class="modal fade" id="sign-inModal" aria-labelledby="sign">
-      <!-- TODO -->
+    <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">How to use the Daily Planet ;)</h4>
+          </div>
+          <div class="modal-body" style="text-align:center">
+            <div>
+              Please watch this (fake) YouTube video which lists the features of our site.
+            </div>
+            <img src="img/troll-youtube-tutorial.jpg" data-toggle="tooltip" title="TODO: Fake Youtube?! tutorial" style="padding: 20px;">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Email modal -->
