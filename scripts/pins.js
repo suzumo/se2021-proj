@@ -56,7 +56,7 @@ function populateSidebar (response) {
                 newsabstract += '<img src=\"'+response[j].multimedia["0"].url+'\" align=\"right\" style=\"padding-left: 5px\">';
             }
             newsabstract += response[j].abstract;
-            newsabstract += '<a class=\"btn btn-link btn-sm read-more\" id=\"readmore' + i +'\" title="Click to read more">' +
+            newsabstract += '<a class="btn btn-link btn-sm read-more" id="readmore' + i +'" data-toggle="tooltip" title="Click to read more">' +
                 '<span class=\"glyphicon glyphicon-new-window\" aria-hidden=\"true\"></span></a>';
             $("#news"+i+"title").html(newstitle);
             $("#news"+i+"abstract").html(newsabstract);
@@ -67,6 +67,9 @@ function populateSidebar (response) {
             console.log("location of news " +i+": " + coord[i][0]+ " "+coord[i][1]);
         }
         $('#testSidebar').css("opacity",1);
+        $('[data-toggle="tooltip"]').tooltip();
+        populateEarthquakes();
+        populateHurricanes();
     });
 }
 // first loop to find coordinates for the articles first

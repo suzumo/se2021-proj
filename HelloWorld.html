@@ -52,7 +52,7 @@
               <span class="glyphicon glyphicon-blackboard" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" title="Send feedback" style="top:5px">
+          <li><button type="button" class="cesium-button cesium-toolbar-button" data-toggle="tooltip" data-placement="bottom" id="feedback-btn" title="Send feedback" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
@@ -274,37 +274,6 @@
       }, 50);
     });
 
-    $(document).ready(function() {
-      $('.panel-collapse').on('show.bs.collapse', function () {
-        $(this).siblings('.panel-heading').addClass('active');
-      });
-
-      $('.panel-collapse').on('hide.bs.collapse', function () {
-        $(this).siblings('.panel-heading').removeClass('active');
-        selected_index = undefined;
-        $('.twitter-btn').hide();
-        $('.twitter').hide();
-      });
-
-      /* function to link "read more" icon in news list to pop articles and highlight pins */
-      $('#testSidebar').click( function() {
-        console.log("testSidebar got clicked!");
-        $('.twitter-btn').hide();
-        $('.twitter').hide();
-
-        viewer.selectedEntity = pin[selected_index];
-        setTimeout(function(){
-//        console.log("twitter should show: " + ($('.cesium-infoBox-visible').not('.twitter').length > 0));
-          if (selected_index != undefined && ($('.cesium-infoBox-visible').not('.twitter').length > 0)) {
-            setTimeout(function () {
-              $('.twitter-btn').show();
-            },100);
-          }
-        }, 100);
-        console.log("article selected is "+selected_index);
-      });
-    });
-
     /* function to make search bar orientate by name of country */
     var longitude, latitude;
     $('#searchForm').on("submit",function(e) {
@@ -340,8 +309,8 @@
       region = "World";
       getFromNYT(populateSidebar);
       document.getElementById('focus').innerHTML = "Focus: " + region;
-
     });
+
     $('.cesium-infoBox-close').not('.twitter-close').click(function () {
       $('.twitter-btn').hide();
       $('.twitter').hide();
@@ -381,16 +350,53 @@
     }
 
     $(document).ready(function(){
+
+      $('.panel-collapse').on('show.bs.collapse', function () {
+        $(this).siblings('.panel-heading').addClass('active');
+      });
+
+      $('.panel-collapse').on('hide.bs.collapse', function () {
+        $(this).siblings('.panel-heading').removeClass('active');
+        selected_index = undefined;
+        $('.twitter-btn').hide();
+        $('.twitter').hide();
+      });
+
+      /* function to link "read more" icon in news list to pop articles and highlight pins */
+      $('#testSidebar').click( function() {
+        console.log("testSidebar got clicked!");
+        $('.twitter-btn').hide();
+        $('.twitter').hide();
+
+        viewer.selectedEntity = pin[selected_index];
+        setTimeout(function(){
+//        console.log("twitter should show: " + ($('.cesium-infoBox-visible').not('.twitter').length > 0));
+          if (selected_index != undefined && ($('.cesium-infoBox-visible').not('.twitter').length > 0)) {
+            setTimeout(function () {
+              $('.twitter-btn').show();
+            },100);
+          }
+        }, 100);
+        console.log("article selected is "+selected_index);
+      });
+
+      /* setting tooltip appearance to bootstrap's */
+      $(":button").each(function() {
+        $(this).attr('data-toggle','tooltip');
+      });
+      $(".cesium-toolbar-button").each(function() {
+        $(this).attr('data-placement', 'bottom');
+      });
+      $('[data-toggle="tooltip"]').tooltip();
+
       getEarthquakesFromUSGS();
       getHurricanesFromWU();
 
       // testing function to see if everything is working as expected -- prints in browser console
       setTimeout(function() {
-//    console.log(response); // print out the results from NYT in browser console
+      //console.log(response); // print out the results from NYT in browser console
         console.log(coord); // print out the results of all the coordinates
         console.log(pin);
-        populateEarthquakes();
-        populateHurricanes();
       }, 5000);
     })
     </script>
