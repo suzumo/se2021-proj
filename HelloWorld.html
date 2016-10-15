@@ -37,27 +37,31 @@
         </a>
       </div>
 
-      <!-- <ul class="nav navbar-nav"> -->
+      <!-- left navi buttons: search -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <form id="searchForm" class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" id="search-word" placeholder="Search for country or topic">
           </div>
-          <button type="submit" id="search" class="btn btn-default">Go!</button>
+          <button type="submit" id="search" class="btn btn-default" data-toggle="tooltip" title="Search">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
         </form>
 
+        <!-- right navi buttons: etc -->
         <ul class="nav navbar-nav navbar-right">
           <li><button type="button" class="cesium-button cesium-toolbar-button" id="tutorial" title="How-to-use Tutorial" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-blackboard" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="cesium-button cesium-toolbar-button" data-toggle="tooltip" data-placement="bottom" id="feedback-btn" title="Send feedback" style="top:5px">
+          <li><button type="button" onclick="location.href='mailto:dailyplanet@gmail.com'" class="cesium-button cesium-toolbar-button" data-toggle="tooltip" id="feedback-btn" title="Send feedback" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="btn btn-default navbar-btn" id="sign-in-btn">Sign In</button></li>
+          <li><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px">Sign In</button></li>
+
         </ul>
       </div> <!-- navbar-collapse -->
     </div> <!-- container-fluid -->
@@ -181,7 +185,7 @@
     </div>
   </div>
 
-    <!-- twitter -->
+    <!-- twitter panel -->
   <div class="cesium-infoBox cesium-infoBox-visible twitter">
     <div class="cesium-infoBox-title">Twitter</div>
     <button type="button" class="cesium-infoBox-close twitter-close">×</button>
@@ -189,9 +193,18 @@
     </iframe>
   </div>
 
+    <!-- twitter btn (hacky) -->
   <button type="button" class="cesium-button cesium-infoBox-camera twitter-btn" id="twitter-btn" title="Read about this on Twitter">
     <img src="img/Twitter.svg" width="18" style="position:relative;top:-2px">
   </button>
+
+    <!-- status box bottom right corner
+         TODO: Twitter & FB trending box triggering buttons -->
+  <div id="fixedbox">
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="focus">Focus: World</div>
+  </div>
 
     <!-- more scripts... -->
   <script src="scripts/map.js"></script>
@@ -401,12 +414,6 @@
       }, 5000);
     })
     </script>
-
-  <div id="fixedbox">
-    <div id="date"></div>
-    <div id="time"></div>
-    <div id="focus">Focus: World</div>
-  </div>
 
 </body>
 </html>

@@ -7,7 +7,6 @@ var pinBuilder = new Cesium.PinBuilder();
 
 // function to translate from location name to longitude and latitude
 function getLocationFromBingAPI(location, name, next) {
-
     $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+name+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
         location.push(result.resourceSets["0"].resources["0"].point.coordinates["1"]); // longitude
         location.push(result.resourceSets["0"].resources["0"].point.coordinates["0"]); // latitude
@@ -23,8 +22,8 @@ function getLocationsFromBingAPI(response, i, next) {
     }
     coord[i] = [];
     var j = i.toString();
-    var k = (response[j].geo_facet.length -1).toString();
-    getLocationFromBingAPI(coord[i], response[j].geo_facet[k], function () {
+    //var k = (response[j].geo_facet.length -1).toString();
+    getLocationFromBingAPI(coord[i], response[j].geo_facet[0], function () {
         getLocationsFromBingAPI(response, i + 1, next);
     });
 }
