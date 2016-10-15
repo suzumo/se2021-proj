@@ -85,15 +85,3 @@ var colors = [ Cesium.Color.RED,
                Cesium.Color.HOTPINK,
                Cesium.Color.GREY
 ];
-
-// testing function to see if everything is working as expected -- prints in browser console
-setTimeout(function() {
-//    console.log(response); // print out the results from NYT in browser console
-    console.log(coord); // print out the results of all the coordinates
-    console.log(pin);
-    populateEarthquakes();
-}, 5000);
-
-$(function () {
-
-});

@@ -3,7 +3,7 @@
  */
 var earthquakes = [];
 var earthquake_pins = [];
-var raw_geojson;
+var raw_earthquake_json;
 
 function getEarthquakesFromUSGS() {
     earthquakes = [];
@@ -13,7 +13,7 @@ function getEarthquakesFromUSGS() {
         method: 'GET',
     }).done(function(result) {
         console.log(result);
-        raw_geojson = result;
+        raw_earthquake_json = result;
         for (i = 0; i < result.features.length; i++) {
             var x = JSON.parse(JSON.stringify(result.features[i]));
             earthquakes.push(x);
@@ -31,9 +31,12 @@ function populateEarthquakes() {
             name: "United States Geological Survey",
             position: Cesium.Cartesian3.fromDegrees(earthquakes[i].geometry.coordinates["0"], earthquakes[i].geometry.coordinates["1"]),
             billboard: {
-                image: 'img/m'+Math.floor(earthquakes[i].properties.mag)+'.png',
+                image: 'img/m'+Math.floor(earthquakes[i].properties.mag)+'no.png',
                 width: 40,
-                height: 40
+                height: 40,
+                //color: 0.8
+                //horizontalOrigin: center,
+                //verticalOrigin: center
             },
             description: '<iframe src=\"' +earthquakes[i].properties.url+ '\" height=98% width=100% value=\"' +i+ '\" style=\"background-color:white\"> </iframe>',
             label: {
@@ -42,7 +45,7 @@ function populateEarthquakes() {
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 outlineWidth: 1,
                 verticalOrigin: Cesium.VerticalOrigin.TOP,
-                pixelOffset: new Cesium.Cartesian2(0, 32)
+                pixelOffset: new Cesium.Cartesian2(0, -30)
             }
         })
     }
