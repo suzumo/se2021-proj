@@ -65,7 +65,7 @@
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
+          <li id="sign-in-btn-wrapper"><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
 
         </ul>
       </div> <!-- navbar-collapse -->
@@ -89,7 +89,7 @@
               <div class="checkbox">
                 <label><input type="checkbox" value="remember-me"> Remember me</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+              <button class="btn btn-lg btn-primary btn-block" data-loading-text="Signing in..." id="login-signin-btn" type="button" autocomplete="off">Sign In</button>
             </form>
           </div> 
         </div>
@@ -506,6 +506,16 @@
 
       $('#sign-in-btn').click(function(){
         console.log("sign in button clicked!");
+      });
+
+      $('#login-signin-btn').on('click', function(){
+        var $btn = $(this).button('loading');
+        $btn.button('reset');
+        setTimeout(function(){
+          $('#loginModal').modal('hide');
+          $('#sign-in-btn-wrapper').html('<button type="button" class="btn btn-default" id="signed-in-btn" style="border:none;margin:7px 30px 7px 23px;padding:0;background:none" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="You are logged in."><img src="img/signed-in-btn.png"></span></button>');
+          $('[data-toggle="tooltip"]').tooltip();
+        }, 1000);
       });
 
       $('#feedbackModal').on('hide.bs.modal', function (event) {
