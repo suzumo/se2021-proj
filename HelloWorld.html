@@ -123,17 +123,17 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="exampleModalLabel">Send us feedback</h4>
+            <h4 class="modal-title" id="exampleModalLabel">Send us feedback!</h4>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="sender-name" class="control-label">Your Name:</label>
+                <label for="sender-name" class="control-label">Contact Name:</label>
                 <input type="text" class="form-control" id="sender-name" placeholder="Please enter your name">
               </div>
               <div class="form-group">
                 <label for="sender-email" class="control-label">Your email:</label>
-                <input type="text" class="form-control" id="sender-email" placeholder="Please enter your contact email">
+                <input type="email" class="form-control" id="sender-email" placeholder="Please enter your contact email">
               </div>
               <div class="form-group">
                 <label for="message-text" class="control-label">Message:</label>
@@ -506,8 +506,6 @@
 
       $('#sign-in-btn').click(function(){
         console.log("sign in button clicked!");
-        $(".feedback").show();
-
       });
 
       $('#feedbackModal').on('hide.bs.modal', function (event) {
