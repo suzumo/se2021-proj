@@ -27,7 +27,7 @@ function getHurricanesFromWU() {
 function populateHurricanes() {
     hurricane_pins = [];
     for (i = 0; i < hurricanes.length; i++) {
-        var radius = 60 + hurricanes[i].Current.SaffirSimpsonCategory*15;
+        var radius = 50 + hurricanes[i].Current.SaffirSimpsonCategory *10;
         hurricane_pins[i] = viewer.entities.add({
             id: "hurricane"+i,
             name: "Weather Underground: "+hurricanes[i].stormInfo.stormName_Nice,
