@@ -7,7 +7,8 @@ var raw_earthquake_json;
 
 function getEarthquakesFromUSGS() {
     earthquakes = [];
-    var url = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson";
+    /* var url = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"; /* significant earthquakes */
+    var url = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"; /* all earthquakes 4.5+ in past week */
     $.ajax({
         url: url,
         method: 'GET',

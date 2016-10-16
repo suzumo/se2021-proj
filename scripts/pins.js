@@ -16,7 +16,7 @@ function getLocationFromBingAPI(location, name, next) {
 // second loop to put pins on map
 
 function getLocationsFromBingAPI(response, i, next) {
-    if (i == 10) {
+    if (i === response.length) {
         next(response);
         return;
     }
@@ -31,9 +31,12 @@ var coord = []; // this will hold all the coordinates (longitude,latitude) of th
 var pin = []; // store all pins in this array
 
 function populateSidebar (response) {
+    for (j=1; j <= 10; j++) {
+        $($('#testSidebar').children()[j]).css("opacity",1);
+    }
     getLocationsFromBingAPI(response, 0, function(response) {
         viewer.entities.removeAll();
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < response.length; i++) {
             var j = i.toString();
             pin[i] = viewer.entities.add({
                 name: "New York Times",
@@ -66,6 +69,9 @@ function populateSidebar (response) {
             console.log("location of news " +i+": " + coord[i][0]+ " "+coord[i][1]);
         }
         $('#testSidebar').css("opacity",1);
+        for (++i; i <= 10; i++) {
+            $($('#testSidebar').children()[i]).css("opacity",0);
+        }
         $('[data-toggle="tooltip"]').tooltip();
         populateEarthquakes();
         populateHurricanes();

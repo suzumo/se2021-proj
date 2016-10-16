@@ -15,8 +15,9 @@
   <script src="scripts/weather.js"></script> <!-- enables Weather Underground/hurricane queries -->
   <script src="scripts/google-trends.js"></script> <!-- Google trends -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <!-- js to access bootstrap -->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
+  <script src="scripts/abc_news.js"></script> <!-- js to access ABC -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="ourStyles.css">
   <script>var region = "the World"; // selected region</script>
@@ -375,6 +376,7 @@
     var longitude, latitude;
     $('#searchForm').on("submit",function(e) {
       e.preventDefault();
+      $('.twitter').hide();
       region = document.getElementById("search-word").value;
       console.log(region);
       $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
@@ -394,7 +396,13 @@
         var pitch = Cesium.Math.toRadians(-60);
         var range = 7500000; // viewing at 7500km from ground
         viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
-        getFromNYTByCountry(region, populateSidebar);
+        if (region === "Australia") {
+          console.log("showing results for Australia");
+          getFromABC(populateSidebar);
+        } else {
+          console.log("showing results for America");
+          getFromNYTByCountry(region, populateSidebar);
+        }
         document.getElementById('focus').innerHTML = "Focus: " + region;
       });
     });
@@ -423,7 +431,11 @@
       console.log("twitter button pressed!");
       $('.twitter').toggle(function(){
         if ($('.twitter').is(":visible")) {
-          populateTwitter();
+          if (region === "Australia") {
+            populateTwitter(australia);
+          } else {
+            populateTwitter(response);
+          }
         }
       });
     })
@@ -432,7 +444,7 @@
       $('.twitter').hide();
     })
 
-    function populateTwitter() {
+    function populateTwitter(response) {
       var country = response[selected_index].geo_facet[0];
       var words = response[selected_index].title.split(/[^\w\s]| /);
       var loc = 'https://mobile.twitter.com/search?q=' + country;

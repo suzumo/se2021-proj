@@ -41,10 +41,10 @@ function getFromNYTByCountry(country, next) {
     }).done(function(result) {
         var i = 0;
         var j = 0;
-        while (i < 10) {
-            var x = JSON.parse(JSON.stringify(result.results[j]));
+        while (i <= result.results.length -1) {
+            var x = JSON.parse(JSON.stringify(result.results[i]));
             if (x.geo_facet.length == 0) {
-                ++j;
+                ++i;
                 continue;
             }
             response.push(x);
