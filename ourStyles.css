@@ -211,3 +211,32 @@
     margin: 0 0 0 10px;
     position: absolute;
   }
+
+  .search-categories-grid {
+    margin: 0 -10px 20px;
+    overflow: hidden;
+  }
+
+  .search-categories-grid-contents {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .search-categories-grid li {
+    float: left;
+    padding: 1px;
+    height: 100px;
+    width: 33%;
+    line-height: 2.2;
+    font-size: 14px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+  }
+
+  .search-categories-grid .category-name {
+    display: block;
+    text-align: center;
+    word-wrap: break-word;
+  }

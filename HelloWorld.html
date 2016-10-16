@@ -48,9 +48,65 @@
           <button type="submit" id="search" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Search">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </button>
-          <button type="submit" id="categories" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Categories">
+          <a type="submit" id="search-categories" class="btn btn-default" data-toggle="popover" title="Categories">
             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-          </button>
+          </a>
+          <div class="popper-content hide"> <!-- Pass html to content of search-categories popper-->
+            <div class="col-xl-9"> <!-- hopefully keeps the table elements a fixed size--> 
+              <div class="search-categories-grid">
+              <ul class="search-categories-grid-contents">
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">World</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Business</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Opinion</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Tech</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Science</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Health</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Sports</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Arts</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Fashion &amp; Style</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Food</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Travel</span> <!-- category name -->
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="category-name">Conferences</span> <!-- category name -->
+                </li>
+              </ul>
+              </div>
+            </div>
+          </div>
         </form>
 
         <!-- right navi buttons: etc -->
@@ -408,6 +464,19 @@
         document.getElementById('focus').innerHTML = "Focus: " + region;
       });
     });
+
+    /* initialize all popovers (for search-categories popover) */
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+
+    /* initialize the 3x3 grid for search-categories popover when it is clicked */
+    $('#search-categories').popover({
+      html: true,
+      content: function(){
+        return $(this).next('.popper-content').html();
+      },
+    })
 
     /* when home button pressed, resets news to world setting */
     $('.cesium-home-button').click(function(){
