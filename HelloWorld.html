@@ -358,11 +358,6 @@
     </iframe>
   </div>
 
-    <!-- twitter btn (hacky) -->
-  <button type="button" class="cesium-button cesium-infoBox-camera twitter-btn" id="twitter-btn" title="Read about this on Twitter">
-    <img src="img/Twitter.svg" width="18" style="position:relative;top:-2px">
-  </button>
-
     <!-- status box bottom right corner
          TODO: Twitter & FB trending box triggering buttons -->
   <div id="fixedbox">
@@ -373,14 +368,6 @@
   </div>
 
     <!-- more scripts... -->
-  <script> var category_name = "world"; /* default category is world */ </script> <!-- need to define category_name before calling pins.js-->
-  <script src="scripts/map.js"></script>
-  <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
-  <script src="scripts/testSidebar.js"></script>
-  <script src="scripts/cesium.js"></script>
-  <script src="scripts/searchbar.js"></script>
-  <script src="scripts/twitter.js"></script>
-
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
     var selected = undefined; /* selected sidebar news article */
@@ -406,8 +393,8 @@
       // testing function to see if everything is working as expected -- prints in browser console
       setTimeout(function() {
       //console.log(response); // print out the results from NYT in browser console
-        console.log(coord); // print out the results of all the coordinates
-        console.log(pin);
+      //console.log(coord); // print out the results of all the coordinates
+      //console.log(pin);
 
         $("#feedback-btn").attr("data-toggle", "modal");
         $("#tutorial-btn").attr("data-toggle", "modal");
@@ -422,6 +409,14 @@
       }, 5000);
     })
   </script>
+
+    <script> var category_name = "world"; /* default category is world */ </script> <!-- need to define category_name before calling pins.js-->
+    <script src="scripts/map.js"></script>
+    <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
+    <script src="scripts/testSidebar.js"></script>
+    <script src="scripts/cesium.js"></script>
+    <script src="scripts/searchbar.js"></script>
+    <script src="scripts/twitter.js"></script>
 
 </body>
 </html>

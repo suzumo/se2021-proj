@@ -4,6 +4,7 @@
     //testing: pin from JSON object
     // below function is hack job to access the populated NYT articles, which is now stored in response
 var pinBuilder = new Cesium.PinBuilder();
+var source = "";
 
 // function to translate from location name to longitude and latitude
 function getLocationFromBingAPI(location, name, next) {
@@ -37,7 +38,7 @@ function populateSidebar (response) {
         for (i = 0; i < response.length; i++) {
             var j = i.toString();
             pin[i] = viewer.entities.add({
-                name: "New York Times",
+                name: source,
                 position: Cesium.Cartesian3.fromDegrees(coord[i][0], coord[i][1]),
                 billboard: {
                     image: pinBuilder.fromText((i+1).toString(), colors[i], 48).toDataURL(),
@@ -45,7 +46,6 @@ function populateSidebar (response) {
                 },
                 id: i,
                 description: '<iframe src='+response[j].url+' height=98% width=100% value=\"' +i+ '\"> </iframe>',
-                //description: '<embed src=\"'+response[j].short_url+'\"></embed>',
                 outline : true
             });
 

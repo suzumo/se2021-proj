@@ -21,37 +21,46 @@ function pickEntity(viewer, windowPosition) {
 
 /* upon clicking cesium container, determines the identity of the topmost entity */
 $('#cesiumContainer').click( function() {
-
-    /* get mouse pointer position */
     console.log("cesium got clicked!");
     mouse_position();
 
-    setTimeout(function() {
-        /* deactivate news panel regardless of what is active */
-        var deactivate = $('.active');
-        console.log("to deactivate " + deactivate.attr('value'));
-        deactivate.siblings('.panel-collapse').removeClass('in');
-        deactivate.removeClass('active');
-        $('.twitter-btn').hide();
-        $('.twitter').hide();
-
-        /* find out what pin is selected and activate corresponding sidepanel's news article */
+    try {
         selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
-        if (selected_pin == undefined) {
-            console.log(" --ignoring: no pin was selected");
+    }
+    catch(err) {
+        selected_pin = -1;
+    }
+
+    setTimeout(function() {
+        /* find out what pin is selected and activate corresponding sidepanel's news article */
+        if (typeof viewer.selectedEntity === 'undefined') {
+            console.log("enter first condition");
+            /* deactivate news panel regardless of what is active */
+            var deactivate = $('.active');
+            deactivate.siblings('.panel-collapse').removeClass('in');
+            deactivate.removeClass('active');
+            console.log(" deactivated panel num " + deactivate.attr('value'));
+            $('.twitter').hide();
         } else {
+            console.log("enter second condition");
+            selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
             var index = selected_pin._id;
-            selected_index = index;
-            var activate = $($('#testSidebar').children()[index+1]);
-            console.log("to activate " + activate.attr('value'));
-            activate.find('.panel-heading').addClass('active');
-            activate.find('.panel-collapse').addClass('in');
-            setTimeout(function(){
-                $('.twitter-btn').show();
-            }, 200);
-            /* activate selected pin's news article */
-            console.log(" --selected pin id is " + index);
-            console.log(" --selected news article id is " + selected_index);
+            if (selected_index === index) {
+                /* selected_pin is same pin as before, leave everything as is */
+                console.log(" same active panel " + activate.attr('value'));
+            } else {
+                selected_index = index;
+                var deactivate = $('.active');
+                deactivate.siblings('.panel-collapse').removeClass('in');
+                deactivate.removeClass('active');
+                console.log(" deactivated panel num " + deactivate.attr('value'));
+                $('.twitter').hide();
+
+                var activate = $($('#testSidebar').children()[index + 1]);
+                activate.find('.panel-heading').addClass('active');
+                activate.find('.panel-collapse').addClass('in');
+                console.log(" change active panel num " + activate.attr('value'));
+            }
         }
-    }, 50);
+    }, 100);
 });

@@ -1,6 +1,7 @@
 /* get top 10 stories in the world */
 function getFromNYT(next, category_name) {
     response = [];
+    source = "New York Times";
     // TODO: if category_name = me, result = my_results.json
     // otherwise, get results from url. 
     var url = "";
@@ -43,6 +44,7 @@ function populateResponse (url, next) {
 /* get most recent 10 stories by country */
 function getFromNYTByCountry(country, next) {
     response = [];
+    source = "New York Times";
     var url = "https://api.nytimes.com/svc/topstories/v2/national.json";
     url += '?' + $.param({
             'api-key': "591e19bb7d974693b30e645f3288102d",

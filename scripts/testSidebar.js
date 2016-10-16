@@ -24,25 +24,15 @@ $(document).ready(function() {
     $('.panel-collapse').on('hide.bs.collapse', function () {
         $(this).siblings('.panel-heading').removeClass('active');
         selected_index = undefined;
-        $('.twitter-btn').hide();
         $('.twitter').hide();
     });
 
     /* function to link "read more" icon in news list to pop articles and highlight pins */
     $('#testSidebar').click(function () {
         console.log("testSidebar got clicked!");
-        $('.twitter-btn').hide();
         $('.twitter').hide();
 
         viewer.selectedEntity = pin[selected_index];
-        setTimeout(function () {
-//        console.log("twitter should show: " + ($('.cesium-infoBox-visible').not('.twitter').length > 0));
-            if (selected_index != undefined && ($('.cesium-infoBox-visible').not('.twitter').length > 0)) {
-                setTimeout(function () {
-                    $('.twitter-btn').show();
-                }, 100);
-            }
-        }, 100);
-        console.log("article selected is " + selected_index);
+        //console.log("article selected is " + selected_index);
     });
 });

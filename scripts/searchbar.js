@@ -70,7 +70,6 @@ $('.cesium-home-button').click(function(){
 });
 
 $('.cesium-infoBox-close').not('.twitter-close').click(function () {
-    $('.twitter-btn').hide();
     $('.twitter').hide();
     selected_index = undefined;
 });

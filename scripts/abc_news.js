@@ -3,14 +3,13 @@
  */
 function getFromABC(next) {
     australia = [];
-    raw_aus_result = undefined;
+    source = "Australian Broadcasting Corporation";
     var page = "https://newsapi.org/v1/articles?source=abc-news-au&sortBy=top&apiKey=3e9f0aff0b9541e38c963d47b406c8f4";
     $.ajax({
         url: page,
         method: 'GET',
     }).done(function(result) {
         console.log(result);
-        raw_aus_result = result;
         for (i = 0; i < 10; i++) {
             var x = JSON.parse(JSON.stringify(result.articles[i]));
             x.abstract = result.articles[i].description;

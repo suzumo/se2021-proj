@@ -30,7 +30,7 @@
   }
 
   .search-categories-grid .li {
-
+    /* TODO */
   }
 
 .form-signin {
@@ -81,10 +81,6 @@
   }
 
   .panel-heading:hover {
-    /*
-    color: #edffff!important;
-    background: rgba(48, 51, 54, 0.5)!important;
-    */
     background:#d9e7f1;
     box-shadow:0 0 8px #fff;
   }
@@ -130,16 +126,6 @@
     right: 5px;
     width: 15%;
     height: 500px;
-  }
-
-  .twitter-btn {
-    position: absolute;
-    z-index: 3;
-    height: 32px;
-    width: 32px;
-    left: calc(20% + 37px) !important;
-    top: 117px !important;
-    padding: 0px !important;
   }
 
   .twitter-iframe {
