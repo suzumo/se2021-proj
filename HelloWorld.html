@@ -65,7 +65,7 @@
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#signbtn">Sign In</button></li>
+          <li><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
 
         </ul>
       </div> <!-- navbar-collapse -->
@@ -73,7 +73,7 @@
   </nav>
 
     <!-- Sign in modal -->
-    <div class="modal fade" id="signbtn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -530,6 +530,7 @@
 
         $("#feedback-btn").attr("data-toggle", "modal");
         $("#tutorial-btn").attr("data-toggle", "modal");
+        $('#sign-in-btn').attr("data-toggle", "modal");
         $('#feedbackModal').on('show.bs.modal', function(event) {
           var button = $(event.relatedTarget);
           var recipient = button.data('whatever');
