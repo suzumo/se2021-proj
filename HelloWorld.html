@@ -299,6 +299,7 @@
     var selected = undefined; /* selected sidebar news article */
     var selected_index = undefined; /* selected index of news */
     var selected_pin = undefined; /* selected index of pin (should be equal to selected_index */
+    var logged = 0; /* 0 for logged in, 1 for logged out */
     var posX; /* x coord of mouse */
     var posY; /* y coord of mouse */
 
@@ -510,6 +511,7 @@
 
       $('#login-signin-btn').on('click', function(){
         var $btn = $(this).button('loading');
+        logged = 1;
         $btn.button('reset');
         setTimeout(function(){
           $('#loginModal').modal('hide');
