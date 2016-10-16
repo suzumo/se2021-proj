@@ -56,51 +56,51 @@
               <div class="search-categories-grid">
               <ul class="search-categories-grid-contents">
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">World</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Business</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Opinion</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Tech</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Science</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Health</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Sports</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Arts</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Fashion &amp; Style</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Food</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Travel</span> <!-- category name -->
                 </li>
                 <li>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-book categories" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Conferences</span> <!-- category name -->
                 </li>
               </ul>
@@ -476,6 +476,14 @@
       content: function(){
         return $(this).next('.popper-content').html();
       },
+    })
+
+    $('#search-categories').click(function(){
+      setTimeout(function(){
+        $(".categories").click(function() {
+          console.log("categories clicked!");
+        });
+      },100);
     })
 
     /* when home button pressed, resets news to world setting */
