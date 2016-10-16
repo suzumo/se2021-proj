@@ -15,7 +15,7 @@
   <script src="scripts/weather.js"></script> <!-- enables Weather Underground/hurricane queries -->
   <script src="scripts/google-trends.js"></script> <!-- Google trends -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> <!-- js to access bootstrap -->
+  <!-- js to access bootstrap -->
   <script src="scripts/nyt_topstories_v2.js"></script> <!-- js to access NYT -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="ourStyles.css">
@@ -64,7 +64,7 @@
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#sign-inModal">Sign In</button></li>
+          <li><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#signbtn">Sign In</button></li>
 
         </ul>
       </div> <!-- navbar-collapse -->
@@ -72,6 +72,30 @@
   </nav>
 
     <!-- Sign in modal -->
+    <div class="modal fade" id="signbtn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-signin">
+              <label for="inputEmail" class="sr-only">Email Address</label>
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <div class="checkbox">
+                <label><input type="checkbox" value="remember-me"> Remember me</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+            </form>
+          </div> 
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial modal -->
     <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -466,6 +490,12 @@
       $('#send-feedback-btn').click(function(){
         console.log("send feedback button clicked!");
         $(".feedback").show();
+      });
+
+      $('#sign-in-btn').click(function(){
+        console.log("sign in button clicked!");
+        $(".feedback").show();
+
       });
 
       $('#feedbackModal').on('hide.bs.modal', function (event) {
