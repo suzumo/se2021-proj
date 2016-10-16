@@ -242,3 +242,8 @@
     text-align: center;
     word-wrap: break-word;
   }
+
+  .search-categories-tile {
+    height: 100%;
+    width: 100%;
+  }
