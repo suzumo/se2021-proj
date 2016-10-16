@@ -76,7 +76,7 @@ function populateSidebar (response) {
     });
 }
 // first loop to find coordinates for the articles first
-getFromNYT(populateSidebar);
+getFromNYT(populateSidebar, category_name);
 
 var iframe = document.getElementsByClassName('cesium-infoBox-iframe')[0];
 iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms'); 

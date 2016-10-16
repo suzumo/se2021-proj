@@ -52,8 +52,10 @@ $('#search-categories').popover({
 $('#search-categories').click(function(){
     setTimeout(function(){
         $(".categories").click(function() {
-            console.log("categories clicked! category num: " + $(this).attr('value'));
-            category_num = $(this).attr('value');
+            console.log("categories clicked! category name: " + $(this).attr('value'));
+            category_name = $(this).attr('value');
+            // TODO: reload top ten news + pins - AS AT 17/10/16 3:00AM: only works for Science category - rest have < 10 defined geo-facet
+            getFromNYT(populateSidebar, category_name);
         });
     },100);
 })
