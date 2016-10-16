@@ -352,6 +352,11 @@
     <!-- more scripts... -->
   <script src="scripts/map.js"></script>
   <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
+  <script src="scripts/testSidebar.js"></script>
+  <script src="scripts/cesium.js"></script>
+  <script src="scripts/searchbar.js"></script>
+  <script src="scripts/twitter.js"></script>
+
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
     var selected = undefined; /* selected sidebar news article */
@@ -361,254 +366,15 @@
     var posX; /* x coord of mouse */
     var posY; /* y coord of mouse */
     var category_num = 1; /* default category is world == 1 */
-
-    $( function() {
-      $('.panel-heading').click( function() {
-        setTimeout(function() {
-          selected = $('.active');
-          selected_index = selected.attr('value');
-          console.log("selected number: " + selected_index);
-          var heading = Cesium.Math.toRadians(0);
-          var pitch = Cesium.Math.toRadians(-30);
-          var range = 10000000; // 10000km
-          viewer.zoomTo(pin[selected_index], new Cesium.HeadingPitchRange(heading, pitch, range));
-          viewer.selectedEntity = undefined;
-        }, 50);
-      });
-    });
-
-    /* function to determine position of mouse when it is called */
-    function mouse_position() {
-      var e = window.event;
-      posX = e.clientX;
-      posY = e.clientY;
-      console.log("mouse position x:" + posX + " y:" + posY);
-    };
-
-    /* standard function to determine the identity of topmost entity when called */
-    function pickEntity(viewer, windowPosition) {
-      var picked = viewer.scene.pick(windowPosition);
-      var id = Cesium.defaultValue(picked.id, picked.primitive.id);
-      if (id instanceof Cesium.Entity) {
-          return id;
-      }
-      return undefined;
-    };
-
-    /* upon clicking cesium container, determines the identity of the topmost entity */
-    $('#cesiumContainer').click( function() {
-
-      /* get mouse pointer position */
-      console.log("cesium got clicked!");
-      mouse_position();
-
-      setTimeout(function() {
-        /* deactivate news panel regardless of what is active */
-        var deactivate = $('.active');
-        console.log("to deactivate " + deactivate.attr('value'));
-        deactivate.siblings('.panel-collapse').removeClass('in');
-        deactivate.removeClass('active');
-        $('.twitter-btn').hide();
-        $('.twitter').hide();
-
-        /* find out what pin is selected and activate corresponding sidepanel's news article */
-        selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
-        if (selected_pin == undefined) {
-          console.log(" --ignoring: no pin was selected");
-        } else {
-          var index = selected_pin._id;
-          selected_index = index;
-          var activate = $($('#testSidebar').children()[index+1]);
-          console.log("to activate " + activate.attr('value'));
-          activate.find('.panel-heading').addClass('active');
-          activate.find('.panel-collapse').addClass('in');
-          setTimeout(function(){
-            $('.twitter-btn').show();
-          }, 200);
-          /* activate selected pin's news article */
-          console.log(" --selected pin id is " + index);
-          console.log(" --selected news article id is " + selected_index);
-        }
-      }, 50);
-    });
-
-    /* function to make search bar orientate by name of country */
-    var longitude, latitude;
-    $('#searchForm').on("submit",function(e) {
-      e.preventDefault();
-      $('.twitter').hide();
-      region = document.getElementById("search-word").value;
-      console.log(region);
-      $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
-        longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
-        latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
-        console.log(longitude + " " + latitude);
-        var target_country = viewer.entities.add({
-          name: region,
-          position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
-          outline: true,
-          billboard: {
-            image: "",
-            verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-          }
-        });
-        var heading = Cesium.Math.toRadians(0);
-        var pitch = Cesium.Math.toRadians(-60);
-        var range = 7500000; // viewing at 7500km from ground
-        viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
-        if (region === "Australia") {
-          console.log("showing results for Australia");
-          getFromABC(populateSidebar);
-        } else {
-          console.log("showing results for America");
-          getFromNYTByCountry(region, populateSidebar);
-        }
-        document.getElementById('focus').innerHTML = "Focus: " + region;
-      });
-    });
-
-    /* initialize all popovers (for search-categories popover) */
-    $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
-
-    /* initialize the 3x3 grid for search-categories popover when it is clicked */
-    $('#search-categories').popover({
-      html: true,
-      content: function(){
-        return $(this).next('.popper-content').html();
-      },
-    })
-
-    $('#search-categories').click(function(){
-      setTimeout(function(){
-        $(".categories").click(function() {
-          console.log("categories clicked! category num: " + $(this).attr('value'));
-          category_num = $(this).attr('value');
-        });
-      },100);
-    })
-
-    /* when home button pressed, resets news to world setting */
-    $('.cesium-home-button').click(function(){
-      /* empty search bar empty */
-      $('#search-word').val("");
-      region = "World";
-      getFromNYT(populateSidebar);
-      document.getElementById('focus').innerHTML = "Focus: " + region;
-    });
-
-    $('.cesium-infoBox-close').not('.twitter-close').click(function () {
-      $('.twitter-btn').hide();
-      $('.twitter').hide();
-      selected_index = undefined;
-    });
-
-    /* twitter buttons not visible when browser starts */
-    $('.twitter-btn').hide();
-    $('.twitter').hide();
-
-    /* twitter button opens twitter window */
-    $('.twitter-btn').click(function() {
-      console.log("twitter button pressed!");
-      $('.twitter').toggle(function(){
-        if ($('.twitter').is(":visible")) {
-          if (region === "Australia") {
-            populateTwitter(australia);
-          } else {
-            populateTwitter(response);
-          }
-        }
-      });
-    })
-
-    $('.twitter-close').click(function() {
-      $('.twitter').hide();
-    })
-
-    function populateTwitter(response) {
-      var country = response[selected_index].geo_facet[0];
-      var words = response[selected_index].title.split(/[^\w\s]| /);
-      var loc = 'https://mobile.twitter.com/search?q=' + country;
-      /* add one more word over 3 char's in length from title */
-      for (i = 0; i < words.length; i++) {
-        if ((words[i].length > 4) && (words[i] !== country)) {
-          loc += "+"+words[i];
-          break;
-        }
-      }
-      $('#twitter-iframe').attr('src', loc);
-    }
+    var response = [];
+    var hurricanes = [];
+    var hurricane_pins = [];
+    var earthquakes = [];
+    var earthquake_pins = [];
+    var coord = []; // this will hold all the coordinates (longitude,latitude) of the articles in 2D array
+    var pin = []; // store all pins in this array
 
     $(document).ready(function(){
-
-      $('.panel-collapse').on('show.bs.collapse', function () {
-        $(this).siblings('.panel-heading').addClass('active');
-      });
-
-      $('.panel-collapse').on('hide.bs.collapse', function () {
-        $(this).siblings('.panel-heading').removeClass('active');
-        selected_index = undefined;
-        $('.twitter-btn').hide();
-        $('.twitter').hide();
-      });
-
-      /* function to link "read more" icon in news list to pop articles and highlight pins */
-      $('#testSidebar').click( function() {
-        console.log("testSidebar got clicked!");
-        $('.twitter-btn').hide();
-        $('.twitter').hide();
-
-        viewer.selectedEntity = pin[selected_index];
-        setTimeout(function(){
-//        console.log("twitter should show: " + ($('.cesium-infoBox-visible').not('.twitter').length > 0));
-          if (selected_index != undefined && ($('.cesium-infoBox-visible').not('.twitter').length > 0)) {
-            setTimeout(function () {
-              $('.twitter-btn').show();
-            },100);
-          }
-        }, 100);
-        console.log("article selected is "+selected_index);
-      });
-
-      /* setting tooltip appearance to bootstrap's */
-      $(":button").each(function() {
-        $(this).attr('data-toggle','tooltip');
-        $(this).attr('data-trigger', 'hover');
-      });
-      $(".cesium-toolbar-button").each(function() {
-        $(this).attr('data-placement', 'bottom');
-      });
-
-      /* feedback email modal upon clicking send show success email message */
-      $('#send-feedback-btn').click(function(){
-        console.log("send feedback button clicked!");
-        $(".feedback").show();
-      });
-
-      $('#sign-in-btn').click(function(){
-        console.log("sign in button clicked!");
-      });
-
-      $('#login-signin-btn').on('click', function(){
-        var $btn = $(this).button('loading');
-        logged = 1;
-        $btn.button('reset');
-        setTimeout(function(){
-          $('#welcome').html("Welcome Mathew!");
-          $('#loginModal').modal('hide');
-          $('#sign-in-btn-wrapper').html('<button type="button" class="btn btn-default" id="signed-in-btn" style="border:none;margin:7px 30px 7px 23px;padding:0;background:none" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="You are logged in."><img src="img/signed-in-btn.png"></span></button>');
-          $('[data-toggle="tooltip"]').tooltip();
-        }, 1000);
-      });
-
-      $('#feedbackModal').on('hide.bs.modal', function (event) {
-        $(".feedback").hide();
-        $("#sender-name").val($("#sender-name").attr(""));
-        $("#sender-email").val($("#sender-email").attr(""));
-        $("#message-text").val("");
-      })
-
       getEarthquakesFromUSGS();
       getHurricanesFromWU();
       startTime();
@@ -632,7 +398,7 @@
         });
       }, 5000);
     })
-    </script>
+  </script>
 
 </body>
 </html>

@@ -27,8 +27,6 @@ function getLocationsFromBingAPI(response, i, next) {
         getLocationsFromBingAPI(response, i + 1, next);
     });
 }
-var coord = []; // this will hold all the coordinates (longitude,latitude) of the articles in 2D array
-var pin = []; // store all pins in this array
 
 function populateSidebar (response) {
     for (j=1; j <= 10; j++) {

@@ -1,5 +1,4 @@
 /* get top 10 stories in the world */
-var response = [];
 function getFromNYT(next) {
     response = [];
     var url = "https://api.nytimes.com/svc/topstories/v2/world.json";

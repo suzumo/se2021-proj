@@ -2,10 +2,6 @@
  * Created by Jiyong on 15-Oct-16.
  */
 
-var hurricanes = [];
-var hurricane_pins = [];
-var raw_hurricane_json;
-
 function getHurricanesFromWU() {
     hurricanes = [];
     var url = "http://api.wunderground.com/api/621f68f11fcb30b5/currenthurricane/view.json";
@@ -14,7 +10,6 @@ function getHurricanesFromWU() {
         method: 'GET',
     }).done(function(result) {
         console.log(result);
-        raw_hurricane_json = result;
         for (i = 0; i < result.currenthurricane.length; i++) {
             var x = JSON.parse(JSON.stringify(result.currenthurricane[i]));
             hurricanes.push(x);

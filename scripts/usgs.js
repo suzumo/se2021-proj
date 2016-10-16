@@ -1,10 +1,6 @@
 /**
  * Created by Jiyong on 14-Oct-16.
  */
-var earthquakes = [];
-var earthquake_pins = [];
-var raw_earthquake_json;
-
 function getEarthquakesFromUSGS() {
     earthquakes = [];
     /* var url = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"; /* significant earthquakes */
@@ -14,7 +10,6 @@ function getEarthquakesFromUSGS() {
         method: 'GET',
     }).done(function(result) {
         console.log(result);
-        raw_earthquake_json = result;
         for (i = 0; i < result.features.length; i++) {
             var x = JSON.parse(JSON.stringify(result.features[i]));
             earthquakes.push(x);
