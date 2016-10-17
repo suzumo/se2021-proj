@@ -33,6 +33,10 @@ function updateSidebarContainers(amount, category_name) {
   $( function() {
     $('.panel-heading').click( function() {
         setTimeout(function() {
+            var newVal = parseInt(Cookies.get(category_name))+ 1;
+            Cookies.expire(category_name);
+            console.log("cookie value: "  + newVal);
+            Cookies.set(category_name, newVal);
             selected = $('.active');
             selected_index = selected.attr('value');
             console.log("selected number: " + selected_index);
