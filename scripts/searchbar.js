@@ -42,7 +42,7 @@ $(function () {
     $('[data-toggle="popover"]').popover()
 })
 
-/* initialize the 3x3 grid for search-categories popover when it is clicked */
+/* initialize the 3x3 grid for search-categories popover */
 $('#search-categories').popover({
     html: true,
     content: function(){

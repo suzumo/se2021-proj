@@ -57,13 +57,13 @@
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <form id="searchForm" class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" id="search-word" placeholder="Search for country or topic">
+            <input type="text" class="form-control" id="search-word" style="width:290px;" placeholder="Search for country or topic">
           <button type="submit" id="search" class="cesium-button cesium-toolbar-button searchform-button" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search">
             <span class="glyphicon glyphicon-search bigger" aria-hidden="true"></span>
           </button>
-          <a type="submit" id="search-categories" class="cesium-button cesium-toolbar-button searchform-button" data-toggle="popover" title="Categories">
+          <button type="button" id="search-categories" class="cesium-button cesium-toolbar-button searchform-button" data-toggle="popover" title="  Categories" data-trigger="focus">
             <span class="glyphicon glyphicon-th bigger" aria-hidden="true"></span>
-          </a>
+          </button>
           <div class="popper-content hide"> <!-- Pass html to content of search-categories popper-->
             <div class="col-xl-9"> <!-- hopefully keeps the table elements a fixed size--> 
               <div class="search-categories-grid">
