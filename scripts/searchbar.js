@@ -25,6 +25,7 @@ $('#searchForm').on("submit",function(e) {
         var pitch = Cesium.Math.toRadians(-60);
         var range = 7500000; // viewing at 7500km from ground
         viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
+        category_name = 'search'; // when user submits a search, search icon will show up next to title
         if (region === "Australia") {
             console.log("showing results for Australia");
             getFromABC(populateSidebar);
