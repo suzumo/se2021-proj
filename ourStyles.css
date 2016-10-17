@@ -185,16 +185,50 @@
     border:none;
   }
 
+  #keybox {
+    position: fixed;
+    bottom: 133px;
+    right: 10px;
+    background-color: rgba(42, 42, 42, 0.8);
+    color: whitesmoke;
+    padding: 10px 15px 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #444;
+  }
+
+  .dropdown-menu {
+    background-color: rgba(42, 42, 42, 0.8);
+    color: whitesmoke;
+    padding: 10px 15px 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #444;
+  }
+
+  #keybox-title {
+    background: none;
+    border: none;
+    color: whitesmoke;
+    font-size:medium;
+    padding:0;
+  }
+
+  .keybox-description {
+    padding-left: 5px;
+    font-size: 15px;
+    text-align: left;
+  }
+
   #fixedbox {
     position: fixed;
-    bottom: 60px;
+    bottom: 10px;
     right: 10px;
     background-color: rgba(42, 42, 42, 0.8);
     color: whitesmoke;
     padding: 15px;
-    border-radius: 4px;
     font-family: monospace;
     font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid #444;
   }
 
   .feedback {
