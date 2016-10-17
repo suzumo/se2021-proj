@@ -162,6 +162,9 @@
     z-index:2;
   }
 
+  .bigger {
+    font-size: 1.5em;
+  }
   .navbar-form .navbar-left {
     left:5px;
     width:20%;
@@ -205,6 +208,11 @@
     overflow: hidden;
   }
 
+  #searchForm {
+    padding: 0 0 0 5px;
+    min-width: 200px;
+  }
+
   .search-categories-grid-contents {
     padding-left: 0;
     list-style: none;
@@ -222,7 +230,13 @@
     border: 1px solid #fff;
     box-sizing: border-box;
   }
-
+  .searchform-button {
+    margin:0px;
+  }
+  .searchform-button > .glyphicon {
+    top:3px;
+    left:1px;
+  }
   .search-categories-grid .category-name {
     display: block;
     text-align: center;

@@ -44,12 +44,11 @@
         <form id="searchForm" class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" id="search-word" placeholder="Search for country or topic">
-          </div>
-          <button type="submit" id="search" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Search">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <button type="submit" id="search" class="cesium-button cesium-toolbar-button searchform-button" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search">
+            <span class="glyphicon glyphicon-search bigger" aria-hidden="true"></span>
           </button>
-          <a type="submit" id="search-categories" class="btn btn-default" data-toggle="popover" title="Categories">
-            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+          <a type="submit" id="search-categories" class="cesium-button cesium-toolbar-button searchform-button" data-toggle="popover" title="Categories">
+            <span class="glyphicon glyphicon-th bigger" aria-hidden="true"></span>
           </a>
           <div class="popper-content hide"> <!-- Pass html to content of search-categories popper-->
             <div class="col-xl-9"> <!-- hopefully keeps the table elements a fixed size--> 
@@ -57,79 +56,80 @@
               <ul class="search-categories-grid-contents">
                 <li>
                   <button class="categories search-categories-tile" value="me">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-user bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Me</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="world">
-                  <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-globe bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">World</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="business">
-                  <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-usd bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Business</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="opinion">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-education bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Opinion</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="technology">
-                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-floppy-disk bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Tech</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="science">
-                  <span class="glyphicon glyphicon-tint" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-tint bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Science</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="sports">
-                  <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-screenshot bigger" aria-hidden="true"></span>
                   <span class="category-name">Sports</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="arts">
-                  <span class="glyphicon glyphicon-education" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-education bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Arts</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="fashion">
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-heart-empty bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Fashion</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="travel">
-                  <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-cutlery bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Food &amp; Travel</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="movies">
-                  <span class="glyphicon glyphicon-film" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-film bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Movies &amp; Theatre</span> <!-- category name -->
                   </button>
                 </li>
                 <li>
                   <button class="categories search-categories-tile" value="politics">
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <!-- category icon -->
+                  <span class="glyphicon glyphicon-pawn bigger" aria-hidden="true"></span> <!-- category icon -->
                   <span class="category-name">Politics</span> <!-- category name -->
                   </button>
                 </li>
               </ul>
               </div>
             </div>
+          </div>
           </div>
         </form>
 

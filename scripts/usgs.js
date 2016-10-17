@@ -35,14 +35,14 @@ function populateEarthquakes() {
                 //verticalOrigin: center
             },
             description: '<iframe src=\"' +earthquakes[i].properties.url+ '\" height=98% width=100% value=\"' +i+ '\" style=\"background-color:white\"> </iframe>',
-            label: {
+            /*label: {
                 text: 'M' + earthquakes[i].properties.mag,
                 font: '12pt monospace',
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 outlineWidth: 1,
                 verticalOrigin: Cesium.VerticalOrigin.TOP,
                 pixelOffset: new Cesium.Cartesian2(0, -30)
-            }
+            }*/
         })
     }
     console.log("earthquakes populated!");

@@ -62,9 +62,9 @@ function populateSidebar (response) {
             $("#news"+i+"abstract").html(newsabstract);
 
             var k = (response[j].geo_facet.length -1).toString();
-            console.log("complete "+i+" news located at "+response[j].geo_facet[k]);
+            /* console.log("complete "+i+" news located at "+response[j].geo_facet[k]);
             console.log("The title of article " +i+ " is: " +response[i].title);
-            console.log("location of news " +i+": " + coord[i][0]+ " "+coord[i][1]);
+            console.log("location of news " +i+": " + coord[i][0]+ " "+coord[i][1]); */
         }
         $('#testSidebar').css("opacity",1);
         for (++i; i <= 10; i++) {

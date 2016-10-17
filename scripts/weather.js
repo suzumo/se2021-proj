@@ -36,14 +36,14 @@ function populateHurricanes() {
                 //verticalOrigin: center
             },
             description: '<iframe src=\"' +hurricanes[i].stormInfo.wuiurl+ '\" height=98% width=100% value=\"' +i+ '\"> </iframe>',
-            label: {
-                text: hurricanes[i].stormInfo.stormName_Nice,
+           /* label: {
+                text: hurricanes[i].stormInfo.stormName,
                 font: '10pt monospace',
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 outlineWidth: 1,
-                verticalOrigin: Cesium.VerticalOrigin.TOP
-                //pixelOffset: new Cesium.Cartesian2(0, -30)
-            }
+                verticalOrigin: Cesium.VerticalOrigin.TOP,
+                pixelOffset: new Cesium.Cartesian2(-10, 30)
+            }*/
         })
     }
     console.log("hurricanes populated!");

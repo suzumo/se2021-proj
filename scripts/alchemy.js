@@ -3,14 +3,34 @@
  */
 
 /* don't know how to make this work */
-var alchemy_language = watson.alchemy_language({
-    api_key: 'd0f07322ff1d42c7e254fad28d242c911e901b7c'
-})
 
 var params = {
     text: 'IBM Watson won the Jeopardy television show hosted by Alex Trebek',
     extract: 'entities, keywords'
 };
+
+function getKeywords(country, next) {
+    $.ajax({
+        url: url,
+        method: 'GET',
+    }).done(function(result) {
+        var i = 0;
+        var j = 0;
+        while (i <= result.results.length -1) {
+            var x = JSON.parse(JSON.stringify(result.results[i]));
+            if (x.geo_facet.length == 0) {
+                ++i;
+                continue;
+            }
+            response.push(x);
+            ++j;
+            ++i;
+        }
+        next(response);
+    }).fail(function(err) {
+        throw err;
+    });
+}
 
 alchemy_language.combined(params, function (err, response) {
     if (err)
