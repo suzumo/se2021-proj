@@ -29,8 +29,11 @@ $('#searchForm').on("submit",function(e) {
         if (region === "Australia") {
             console.log("showing results for Australia");
             getFromABC(populateSidebar);
+        } else if (region === "America") {
+            category_name = "national";
+            getFromNYT(populateSidebar, category_name);
         } else {
-            console.log("showing results for America");
+            console.log("showing results for categories");
             getFromNYT(populateSidebar, category_name);
         }
         //document.getElementById('focus').innerHTML = "Focus: " + region;
