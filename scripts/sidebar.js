@@ -26,10 +26,10 @@ function updateSidebarContainers(amount, category_name) {
     "</div>";
     i++;
   }
-  sidebar += "</div>"
+  sidebar += "</div>";
 
   $('#newsContainer').append(sidebar); // add raw html to the newsContainer
-
+  //$('#newsContainer').html(sidebar); // add raw html to the newsContainer
   $( function() {
     $('.panel-heading').click( function() {
         setTimeout(function() {

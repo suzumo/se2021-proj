@@ -30,9 +30,10 @@ $('#searchForm').on("submit",function(e) {
             getFromABC(populateSidebar);
         } else {
             console.log("showing results for America");
-            getFromNYTByCountry(region, populateSidebar);
+            getFromNYT(populateSidebar, category_name);
+            //getFromNYTByCountry(region, populateSidebar);
         }
-        document.getElementById('focus').innerHTML = "Focus: " + region;
+        //document.getElementById('focus').innerHTML = "Focus: " + region;
     });
 });
 
@@ -64,9 +65,9 @@ $('#search-categories').click(function(){
 $('.cesium-home-button').click(function(){
     /* empty search bar empty */
     $('#search-word').val("");
-    region = "World";
-    getFromNYT(populateSidebar);
-    document.getElementById('focus').innerHTML = "Focus: " + region;
+    region = "world";
+    getFromNYT(populateSidebar, region);
+    //document.getElementById('focus').innerHTML = "Focus: " + region;
 });
 
 $('.cesium-infoBox-close').not('.twitter-close').click(function () {

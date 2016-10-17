@@ -9,9 +9,15 @@ var source = "";
 // function to translate from location name to longitude and latitude
 function getLocationFromBingAPI(location, name, next) {
     $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+name+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
-        location.push(result.resourceSets["0"].resources["0"].point.coordinates["1"]); // longitude
-        location.push(result.resourceSets["0"].resources["0"].point.coordinates["0"]); // latitude
-        next()
+        try { // longitude
+            location.push(result.resourceSets["0"].resources["0"].point.coordinates["1"]);
+            location.push(result.resourceSets["0"].resources["0"].point.coordinates["0"]); // latitude
+        } catch (err) {
+            console.log("this place is undefined:" + err);
+            location.push(-98.95733642578125); // longitude for USA
+            location.push(39.44325637817383); // latitude for USA
+        }
+        next();
     });
 };
 // second loop to put pins on map
@@ -31,10 +37,11 @@ function getLocationsFromBingAPI(response, i, next) {
 
 function populateSidebar (response) {
     // initialize panels before populating
-    updateSidebarContainers(response.length, category_name); 
+    updateSidebarContainers(response.length, category_name);
+    /*
     for (j=1; j <= 10; j++) {
         $($('#testSidebar').children()[j]).css("opacity",1);
-    }
+    */
     getLocationsFromBingAPI(response, 0, function(response) {
         viewer.entities.removeAll();
         for (i = 0; i < response.length; i++) {
@@ -68,10 +75,12 @@ function populateSidebar (response) {
             console.log("The title of article " +i+ " is: " +response[i].title);
             console.log("location of news " +i+": " + coord[i][0]+ " "+coord[i][1]); */
         }
+
         $('#testSidebar').css("opacity",1);
+        /*
         for (++i; i <= 10; i++) {
             $($('#testSidebar').children()[i]).css("opacity",0);
-        }
+        }*/
         $('[data-toggle="tooltip"]').tooltip();
         populateEarthquakes();
         populateHurricanes();

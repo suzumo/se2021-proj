@@ -1,6 +1,5 @@
 /* get top 10 stories in the world */
 function getFromNYT(next, category_name) {
-    response = [];
     source = "New York Times";
     var url = "";
     if (category_name === "me") {
@@ -17,22 +16,28 @@ function getFromNYT(next, category_name) {
 
 /* Given a url, populates global response array */
 function populateResponse (url, next) {
-	$.ajax({
+    $.ajax({
         url: url,
         method: 'GET',
     }).done(function(result) {
-    		var i = 0;
+        response = [];
+        var i = 0;
 		    var j = 0;
-		    while (i < 10) {
-		        var x = JSON.parse(JSON.stringify(result.results[j]));
+		    while (i < result.results.length) {
+		        var x = JSON.parse(JSON.stringify(result.results[i]));
 		        if (x.geo_facet.length == 0) {
-		            ++j;
+		            ++i;
 		            continue;
 		        }
+		        console.log(x);
 		        response.push(x);
 		        ++j;
+                if (j === 10) {
+                    break;
+                }
 		        ++i;
 		    }
+		    console.log(response);
     	next(response);
     }).fail(function(err) {
         throw err;
