@@ -25,7 +25,7 @@ function populateResponse (url, next) {
     }).done(function(result) {
     		var i = 0;
 		    var j = 0;
-		    while (j <= result.results.length -1) {
+		    while (i < 10) {
 		        var x = JSON.parse(JSON.stringify(result.results[j]));
 		        if (x.geo_facet.length == 0) {
 		            ++j;
