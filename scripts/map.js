@@ -37,24 +37,3 @@ function checkTime(i) {
   if (i < 10) {i = "0" + i};
   return i;
 }
-
-
-// when we load the window, accordion-ify the sidebar (for test purposes only. In demo version, accordion-ify + display sidebar will
-// occur after pins populate the map)
-/*
-window.onload = function () {
-
-  // finally, accordion-ify the sidebar
-  $(function() {
-    $("#testSidebar").accordion({
-      heightStyle: "content",
-      collapsible: true,
-      active: false
-    });
-
-    // TODO: must link clicking on bar to focusing map on icon (+showing the more detailed newsarticle sidepanel?)
-    //viewer.zoomTo(pin[x]);
-
-  });
-};
-*/
