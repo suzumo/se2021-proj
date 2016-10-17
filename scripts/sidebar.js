@@ -1,6 +1,6 @@
 //SIDEBAR
 //can add category to change the title
-function updateSidebarContainers(amount) {
+function updateSidebarContainers(amount, category_name) {
   $('#newsContainer').empty(); // remove all previous results  
   var count = 0;
   if( amount < 10 ){
@@ -8,7 +8,8 @@ function updateSidebarContainers(amount) {
   }else{
     count = 10;
   }
-  var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\"><h2 style=\"text-align:center;color:whitesmoke;\">Top Ten News</h2>";
+  var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\"><h2 style=\"text-align:center;color:whitesmoke;\">Top Ten News</h2><span class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span>";
+
   var i = 0;
   while (i < count) {
     sidebar +=
