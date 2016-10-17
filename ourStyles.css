@@ -106,8 +106,8 @@
   }
 
   .cesium-infoBox-visible {
-    top: 112px;
-    left: calc(20% + 5px);
+    top: 50px;
+    left: calc(20% + 20px);
     width: 40%;
     background: #303336 !important;
     min-width:350px;
@@ -123,13 +123,13 @@
   }
 
   .twitter {
-    left: calc(20% + 490px);
-    width: 15%;
-    height: 500px;
+    left: calc(20% + 510px);
+    width: 20%;
+    height: 785px;
   }
 
   .twitter-iframe {
-    height: 93%;
+    height: 95%;
     padding: 5px;
     background-color: white;
     background-clip: content-box;
