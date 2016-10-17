@@ -185,19 +185,11 @@
     padding: 0px 0px 0px 5px;
     border:none;
   }
-
+  /*
   #keybox {
     position: fixed;
     top: 50px;
     right: 10px;
-    background-color: rgba(42, 42, 42, 0.8);
-    color: whitesmoke;
-    padding: 10px 15px 10px 15px;
-    border-radius: 4px;
-    border: 1px solid #444;
-  }
-
-  .dropdown-menu {
     background-color: rgba(42, 42, 42, 0.8);
     color: whitesmoke;
     padding: 10px 15px 10px 15px;
@@ -211,6 +203,15 @@
     color: whitesmoke;
     font-size:medium;
     padding:0;
+  }
+  */
+
+  .dropdown-menu {
+    background-color: rgba(42, 42, 42, 0.8);
+    color: whitesmoke;
+    padding: 10px 15px 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #444;
   }
 
   .keybox-description {

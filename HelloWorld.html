@@ -129,11 +129,43 @@
 
         <!-- right navi buttons: etc -->
         <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="cesium-button cesium-toolbar-button" id="tutorial-btn" data-toggle="modal" data-target="#tutorialModal" title="How-to-use Tutorial" style="top:5px">
-            <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
-              <span class="glyphicon glyphicon-blackboard" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
-            </svg:svg>
-          </button></li>
+          <li>    <!-- Legend button -->
+            <div id="keybox" class="dropdown" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Legend">
+              <button class="dropdown-toggle cesium-button cesium-toolbar-button" type="button" id="keybox-title" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: 5px;font-size:19px;text-align: center; margin-bottom:4px">
+                <span class="glyphicon glyphicon-info-sign bigger" aria-hidden="true"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="keybox-title" id="keyboard-body">
+                <li><div class="legend-pin"><img src="img/legend-pin.png"><span class="keybox-description">News articles</span></div></li>
+                <li><div class="legend-pin"><img src="img/legend-hurricane.png"><span class="keybox-description">Hurricanes</span></div></li>
+                <li><div class="legend-pin" data-toggle="tooltip" data-placement="left" data-trigger="hover"><img src="img/legend-earthquake.png"><span class="keybox-description">Earthquakes</span></div></li>
+                <li><div><table cellpadding=0 cellspacing=0 border=0 style="margin-left:auto;margin-right:auto;margin-top:3px">
+                  <tr>
+                    <td><img src="img/m4no.png" width="23"></td>
+                    <td><img src="img/m5no.png" width="23"></td>
+                    <td><img src="img/m6no.png" width="23"></td>
+                    <td><img src="img/m7no.png" width="23"></td>
+                    <td><img src="img/m8no.png" width="23"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <small>
+                        weaker
+                      </small>
+                    </td>
+                    <td></td>
+                    <td colspan="2" align="right">
+                      <small>
+                        stronger
+                      </small>
+                    </td>
+                  </tr>
+                </table></div>
+                </li>
+              </ul>
+            </div>
+
+
+          </li>
           <li><button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" data-toggle="modal" data-target="#feedbackModal" title="Send feedback" data-whatever="crs.jeong@gmail.com" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
@@ -170,7 +202,7 @@
       </div>
     </div>
 
-    <!-- Tutorial modal -->
+    <!-- Tutorial modal
     <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -189,7 +221,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Email modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -247,42 +279,6 @@
     <img src="img/logo_small_white.png">
     <div id="time-date" align="center"></div>
   </div>
-
-    <!-- key dropdown menu -->
-    <div id="keybox" class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="keybox-title" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align: center; margin-bottom:4px">
-        Legend<span class="caret" style="margin-left:5px"></span>
-      </button>
-
-      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="keybox-title" id="keyboard-body">
-        <li><div class="legend-pin"><img src="img/legend-pin.png"><span class="keybox-description">News articles</span></div></li>
-        <li><div class="legend-pin"><img src="img/legend-hurricane.png"><span class="keybox-description">Hurricanes</span></div></li>
-        <li><div class="legend-pin" data-toggle="tooltip" data-placement="left" data-trigger="hover"><img src="img/legend-earthquake.png"><span class="keybox-description">Earthquakes</span></div></li>
-        <li><div><table cellpadding=0 cellspacing=0 border=0 style="margin-left:auto;margin-right:auto;margin-top:3px">
-          <tr>
-            <td><img src="img/m4no.png" width="23"></td>
-            <td><img src="img/m5no.png" width="23"></td>
-            <td><img src="img/m6no.png" width="23"></td>
-            <td><img src="img/m7no.png" width="23"></td>
-            <td><img src="img/m8no.png" width="23"></td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <small>
-                weaker
-              </small>
-            </td>
-            <td></td>
-            <td colspan="2" align="right">
-              <small>
-                stronger
-              </small>
-            </td>
-          </tr>
-        </table></div>
-        </li>
-      </ul>
-    </div>
 
     <!-- more scripts... -->
   <script>
