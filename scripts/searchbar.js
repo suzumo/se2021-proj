@@ -64,6 +64,7 @@ $('#search-categories').click(function(){
 
 /* when home button pressed, resets news to world setting */
 $('.cesium-home-button').click(function(){
+    category_name = 'world';
     /* empty search bar empty */
     $('#search-word').val("");
     region = "world";
