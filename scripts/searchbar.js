@@ -31,6 +31,7 @@ $('#searchForm').on("submit",function(e) {
         } else {
             console.log("showing results for America");
             getFromNYTByCountry(region, populateSidebar);
+            //getFromNYT(populateSidebar, category_name);
         }
         document.getElementById('focus').innerHTML = "Focus: " + region;
     });
@@ -53,8 +54,9 @@ $('#search-categories').click(function(){
     setTimeout(function(){
         $(".categories").click(function() {
             console.log("categories clicked! category name: " + $(this).attr('value'));
+            // when user clicks on a category, clear the search bar (so that search bar results don't override category results)
+            $("#search-word").val("");
             category_name = $(this).attr('value');
-            // TODO: reload top ten news + pins - AS AT 17/10/16 3:00AM: only works for Science category - rest have < 10 defined geo-facet
             getFromNYT(populateSidebar, category_name);
         });
     },100);
