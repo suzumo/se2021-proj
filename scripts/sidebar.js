@@ -10,14 +10,20 @@ function updateSidebarContainers(amount, category_name) {
   }
   var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\">" +
                   "<div id=\"testSidebar-title\">" +
-                    "<div style=\"display:inline-block;padding-right:30px;\"><span style=\"font-size:45px;\"class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span></div>" +
+                    "<div style=\"display:inline-block;padding-right:30px;\"><span style=\"color:darkgray;font-size:45px;\"class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span></div>" +
                     "<div style=\"display:inline-block;margin-bottom:-10px\"><h2 style=\"color:whitesmoke;padding-bottom:10px;\">Top Ten News</h2></div>" +
                   "</div>";
   var i = 0;
   while (i < count) {
     sidebar +=
-   "<div class=\"panel panel-default\"><div class=\"panel-heading\" id=\"heading"+i.toString()+"\" role=\"tab\" value=\""+i.toString()+"\"><h4 class=\"panel-title\"><a id=\"news"+i.toString()+"title\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#testSidebar\" href=\"#collapse"+i.toString()+"\" aria-expanded=\"false\" aria-controls=\"collapse"+i.toString()+"\" style=\"text-decoration:none\"></a></h4></div><div id=\"collapse"+i.toString()+"\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading"+i.toString()+"\"><div class=\"panel-body\" id=\"news"+i.toString()+"abstract\"></div></div></div>";
-    // put into single line due to sublime's syntax highligher - copy-pasted repeated sidebar panel html from HelloWorld.html
+    "<div class=\"panel panel-default\">" + 
+      "<div class=\"panel-heading\" id=\"heading"+i.toString()+"\" role=\"tab\" value=\""+i.toString()+"\">" + 
+        "<h4 class=\"panel-title\"><a id=\"news"+i.toString()+"title\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#testSidebar\" href=\"#collapse"+i.toString()+"\" aria-expanded=\"false\" aria-controls=\"collapse"+i.toString()+"\" style=\"text-decoration:none\"></a></h4>" + 
+      "</div>" +
+      "<div id=\"collapse"+i.toString()+"\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading"+i.toString()+"\">" + 
+        "<div class=\"panel-body\" id=\"news"+i.toString()+"abstract\"></div>" + 
+      "</div>" + 
+    "</div>";
     i++;
   }
   sidebar += "</div>"
