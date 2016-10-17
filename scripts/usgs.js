@@ -34,7 +34,7 @@ function populateEarthquakes() {
                 //horizontalOrigin: center,
                 //verticalOrigin: center
             },
-            description: '<iframe src=\"' +earthquakes[i].properties.url+ '\" height=98% width=100% value=\"' +i+ '\" style=\"background-color:white\"> </iframe>',
+            description: '<iframe src=\"' +earthquakes[i].properties.url+ '\" height=98% width=100% value=\"' +i+ '\" style="background-color:white"> </iframe>',
             /*label: {
                 text: 'M' + earthquakes[i].properties.mag,
                 font: '12pt monospace',

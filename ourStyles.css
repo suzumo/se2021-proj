@@ -109,6 +109,7 @@
     top: 112px;
     left: calc(20% + 5px);
     width: 40%;
+    background: #303336 !important;
     min-width:350px;
     transform: translate(0,0);
     visibility: visible;
