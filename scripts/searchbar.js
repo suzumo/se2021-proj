@@ -29,7 +29,7 @@ $('#searchForm').on("submit",function(e) {
         if (region === "Australia") {
             console.log("showing results for Australia");
             getFromABC(populateSidebar);
-        } else if (region === "America") {
+        } else if (region === "America" || region === "US" || region === "U.S" || region === "U.S.") {
             category_name = "national";
             getFromNYT(populateSidebar, category_name);
         } else {
