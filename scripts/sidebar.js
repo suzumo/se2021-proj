@@ -8,8 +8,11 @@ function updateSidebarContainers(amount, category_name) {
   }else{
     count = 10;
   }
-  var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\"><h2 style=\"text-align:center;color:whitesmoke;\">Top Ten News</h2><span class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span>";
-
+  var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\">" +
+                  "<div id=\"testSidebar-title\">" +
+                    "<div style=\"display:inline-block;padding-right:30px;\"><span style=\"font-size:45px;\"class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span></div>" +
+                    "<div style=\"display:inline-block;margin-bottom:-10px\"><h2 style=\"color:whitesmoke;padding-bottom:10px;\">Top Ten News</h2></div>" +
+                  "</div>";
   var i = 0;
   while (i < count) {
     sidebar +=
