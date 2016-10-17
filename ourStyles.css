@@ -276,6 +276,7 @@
     display: block;
     text-align: center;
     word-wrap: break-word;
+    font-family: Georgia;
   }
 
   .search-categories-tile {
@@ -298,6 +299,7 @@
   .popover-title {
     background-color: rgba(42, 42, 42, 0.8);
     color: whitesmoke;
+    font-size: 18px;
   }
 
   .popover-content {
