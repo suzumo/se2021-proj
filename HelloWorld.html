@@ -296,6 +296,18 @@
     var earthquake_pins = [];
     var coord = []; // this will hold all the coordinates (longitude,latitude) of the articles in 2D array
     var pin = []; // store all pins in this array
+    var category_icons = {'me': 'glyphicon-user', 
+                          'world': 'glyphicon-globe',
+                          'business': 'glyphicon-usd',
+                          'opinion': 'glyphicon-education',
+                          'technology': 'glyphicon-floppy-disk',
+                          'science': 'glyphicon-tint',
+                          'sports': 'glyphicon-screenshot',
+                          'arts': 'glyphicon-education',
+                          'fashion': 'glyphicon-heart-empty',
+                          'travel': 'glyphicon-cutlery',
+                          'movies': 'glyphicon-film',
+                          'politics': 'glyphicon-pawn'};
 
     $(document).ready(function(){
       getEarthquakesFromUSGS();

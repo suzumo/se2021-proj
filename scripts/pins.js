@@ -31,7 +31,7 @@ function getLocationsFromBingAPI(response, i, next) {
 
 function populateSidebar (response) {
     // initialize panels before populating
-    updateSidebarContainers(response.length); 
+    updateSidebarContainers(response.length, category_name); 
     for (j=1; j <= 10; j++) {
         $($('#testSidebar').children()[j]).css("opacity",1);
     }
