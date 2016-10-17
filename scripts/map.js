@@ -25,12 +25,27 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 // function for getting real-time clock
 function startTime() {
   var today = new Date();
+  var date = today.toString().substr(0,15);
+
+  //date
   var h = today.getHours();
-  var date = [today.getDate(), today.getMonth(), today.getFullYear()].join('/')
+  var meridiem = "";
+  if(h > 11){
+    meridiem = "pm"
+  }else{
+    meridiem ="am"
+  }
+  //time
+  if(h==0){
+    h = 12;
+  }else{
+    h = h%12;
+  }
   m = checkTime(today.getMinutes());
   s = checkTime(today.getSeconds());
-  document.getElementById('date').innerHTML = "Local Date: " + date;
-  document.getElementById('time').innerHTML = "Local Time: " + h + ":" + m + ":" + s;
+  var time =  h + ":" + m + ":" + s + meridiem;
+
+  document.getElementById('time-date').innerHTML = time + "<span style=\"display:inline-block; width: 50px;\"></span>" + date;
   var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
