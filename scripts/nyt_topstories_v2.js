@@ -2,8 +2,6 @@
 function getFromNYT(next, category_name) {
     response = [];
     source = "New York Times";
-    // TODO: if category_name = me, result = my_results.json
-    // otherwise, get results from url. 
     var url = "";
     if (category_name === "me") {
     	// result = my_result.json
