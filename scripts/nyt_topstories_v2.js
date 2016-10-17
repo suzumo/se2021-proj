@@ -8,7 +8,7 @@ function getFromNYT(next, category_name) {
     } else {
     	var url = "https://api.nytimes.com/svc/topstories/v2/" + category_name + ".json";
 	    url += '?' + $.param({
-	            'api-key': "591e19bb7d974693b30e645f3288102d"
+	            'api-key': "95f0db3497724b81a516a16fbb030ba3" // old key: 591e19bb7d974693b30e645f3288102d
 	        });
 	    populateResponse(url, next);
     }
@@ -50,7 +50,7 @@ function getFromNYTByCountry(country, next) {
     source = "New York Times";
     var url = "https://api.nytimes.com/svc/topstories/v2/national.json";
     url += '?' + $.param({
-            'api-key': "591e19bb7d974693b30e645f3288102d",
+            'api-key': "95f0db3497724b81a516a16fbb030ba3", // old key: 591e19bb7d974693b30e645f3288102d
         });
     $.ajax({
         url: url,
