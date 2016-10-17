@@ -1,6 +1,7 @@
 //SIDEBAR
 //can add category to change the title
 function updateSidebarContainers(amount) {
+  $('#newsContainer').empty(); // remove all previous results  
   var count = 0;
   if( amount < 10 ){
     count = amount;
