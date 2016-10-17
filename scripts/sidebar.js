@@ -10,7 +10,7 @@ function updateSidebarContainers(amount, category_name) {
   }
   var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\">" +
                   "<div id=\"testSidebar-title\">" +
-                    "<div style=\"display:inline-block;padding-right:30px;\"><span style=\"color:darkgray;font-size:45px;\"class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span></div>" +
+                    "<div style=\"display:inline-block;padding-left:25px;padding-right:30px;\"><span style=\"color:darkgray;font-size:30px;\"class=\"glyphicon " + category_icons[category_name] + " bigger\" aria-hidden=\"true\"></span></div>" +
                     "<div style=\"display:inline-block;margin-bottom:-10px\"><h2 style=\"color:whitesmoke;padding-bottom:10px;\">Top Ten News</h2></div>" +
                   "</div>";
   var i = 0;
