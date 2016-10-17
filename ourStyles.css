@@ -123,8 +123,7 @@
   }
 
   .twitter {
-    left: auto;
-    right: 5px;
+    left: calc(20% + 490px);
     width: 15%;
     height: 500px;
   }
