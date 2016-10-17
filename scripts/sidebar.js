@@ -18,7 +18,7 @@ function updateSidebarContainers(amount) {
         </h4> 
       </div>
       <div id=\"collapse"+i.toString()+"\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading"+i.toString()+"\">
-        <div class=\"panel-body\" id=\"news0abstract\"></div>
+        <div class=\"panel-body\" id=\"news"+i.toString()+"abstract\"></div>
       </div>
     </div>";
     i++;
