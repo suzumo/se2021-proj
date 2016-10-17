@@ -8,7 +8,7 @@ function updateSidebarContainers(amount) {
     count = 10;
   }
 
-  var sidebar = "<div id="testSidebar" style="opacity:0;" class="panel-group" role="tablist" aria-multiselectable="true"><h2 style="text-align:center;color:whitesmoke;">Top Ten News</h2>";
+  var sidebar = "<div id=\"testSidebar\" style=\"opacity:0;\" class=\"panel-group\" role=\"tablist\" aria-multiselectable=\"true\"><h2 style=\"text-align:center;color:whitesmoke;\">Top Ten News</h2>";
   var i = 0;
   while (i < count) {
     sidebar +=
