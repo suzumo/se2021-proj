@@ -29,6 +29,7 @@ $(document).ready(function(){
     newItem.setAttribute("id", "twitter-btn");
     newItem.setAttribute("title", "Read about this on Twitter");
     newItem.setAttribute("data-toggle", "tooltip");
+    newItem.setAttribute("data-trigger", "hover");
     newItem.innerHTML = '<img src="img/Twitter.svg" width="18" style="position:relative;top:-2px;left:-3px">';
 
     setTimeout(function(){

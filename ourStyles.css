@@ -27,6 +27,7 @@
     min-width: 250px;
     max-height: calc(100% - 50px);
     z-index:1;
+    border: 1px solid #444;
   }
 
   .search-categories-grid .li {
@@ -107,9 +108,9 @@
 
   .cesium-infoBox-visible {
     top: 50px;
-    left: calc(20% + 20px);
+    left: calc(20% + 12px);
     width: 40%;
-    background: #303336 !important;
+    background: rgba(48,51,54,0.5) !important;
     min-width:350px;
     transform: translate(0,0);
     visibility: visible;
@@ -120,10 +121,16 @@
     transition-timing-function: ease-out, ease-out;
     transition-delay: initial;
     z-index:2;
+    border: 1px solid #444;
+    max-width: 40%;!important
+  }
+
+  .cesium-infoBox-title {
+    background: rgba(84,84,84,0.5)!important;
   }
 
   .twitter {
-    left: calc(20% + 510px);
+    left: calc(60% + 20px) !important;
     width: 20%;
     height: 785px;
   }
