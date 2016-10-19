@@ -22,8 +22,8 @@
   <script src="scripts/abc_news.js"></script> <!-- js to access ABC -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="ourStyles.css">
-  <script>var region = "the World"; // selected region</script>
-
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="158789973666-p4vdit2rb5luqvh0f6jh1oq8mc0gctgl.apps.googleusercontent.com">
   <script>
     Cookies.defaults = {
       expires: 2000
@@ -149,7 +149,8 @@
 
         <!-- right navi buttons: etc -->
         <ul class="nav navbar-nav navbar-right">
-          <li>    <!-- Legend button -->
+            <!-- Legend button -->
+          <li>
             <div id="keybox" class="dropdown" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Legend">
               <button class="dropdown-toggle cesium-button cesium-toolbar-button" type="button" id="keybox-title" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: 5px;font-size:22px;text-align: center; margin-bottom:4px">
                 <span style="top:2px;" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -184,17 +185,29 @@
                 </li>
               </ul>
             </div>
-
-
           </li>
-          <li><button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" data-toggle="modal" data-target="#feedbackModal" title="Send feedback" data-whatever="crs.jeong@gmail.com" style="top:5px">
+            <!-- Feedback email button -->
+          <li>
+              <button type="button" class="cesium-button cesium-toolbar-button" id="feedback-btn" data-toggle="modal" data-target="#feedbackModal" title="Send feedback" data-whatever="crs.jeong@gmail.com" style="top:5px">
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
           </button></li>
-          <li id="sign-in-btn-wrapper"><button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
-
-        </ul>
+            <!-- Sign in button -->
+          <li id="sign-in-btn-wrapper">
+              <script type="text/javascript">
+                  function onSignIn(googleUser) {
+                  profile = googleUser.getBasicProfile();
+                  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                  console.log('Name: ' + profile.getName());
+                  console.log('Image URL: ' + profile.getImageUrl());
+                  console.log('Email: ' + profile.getEmail());
+              }
+              </script>
+              <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-width="100" data-height="32" data-longtitle="true"></div> -->
+              <button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
+          </li>
+        </ul> <!-- right navi buttons collapse -->
       </div> <!-- navbar-collapse -->
     </div> <!-- container-fluid -->
   </nav>
@@ -304,6 +317,9 @@
     <!-- more scripts... -->
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
+    var profile = "";
+    var region = "world";
+    var category_name = "world";
     var selected = undefined; /* selected sidebar news article */
     var selected_index = undefined; /* selected index of news */
     var selected_pin = undefined; /* selected index of pin (should be equal to selected_index */
@@ -360,8 +376,6 @@
 
   </script>
 
-
-    <script> var category_name = "world"; /* default category is world */ </script> <!-- need to define category_name before calling pins.js-->
     <script src="scripts/map.js"></script>
     <script src="scripts/pins.js"></script> <!-- loads pins and news articles -->
     <script src="scripts/testSidebar.js"></script>

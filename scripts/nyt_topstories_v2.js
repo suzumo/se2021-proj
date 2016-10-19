@@ -29,7 +29,7 @@ function populateResponse (url, next) {
 		            ++i;
 		            continue;
 		        }
-		        console.log(x);
+		        //console.log(x);
 		        response.push(x);
 		        ++j;
                 if (j === 10) {

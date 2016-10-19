@@ -102,13 +102,26 @@ $(document).ready(function() {
     });
 
     $('#login-signin-btn').on('click', function () {
+        console.log('log-in button clicked!');
         var $btn = $(this).button('loading');
         logged = 1;
         $btn.button('reset');
         setTimeout(function () {
             $('#welcome').html("Welcome Mathew!");
             $('#loginModal').modal('hide');
-            $('#sign-in-btn-wrapper').html('<button type="button" class="btn btn-default" id="signed-in-btn" style="border:none;margin:7px 30px 7px 23px;padding:0;background:none" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="You are logged in."><img src="img/signed-in-btn.png"></span></button>');
+            $('#sign-in-btn-wrapper').attr('data-toggle', 'tooltip');
+            $('#sign-in-btn-wrapper').attr('data-trigger', 'hover');
+            $('#sign-in-btn-wrapper').attr('data-placement', 'bottom');
+            $('#sign-in-btn-wrapper').attr('title', 'Welcome Mathew! You are logged in.');
+            $('#sign-in-btn-wrapper').html('<div class="dropdown">' +
+                '<button type="button" data-toggle="dropdown" class="btn btn-default" id="signed-in-btn" style="border:none;margin:7px 30px 7px 23px;padding:0;background:none" aria-haspopup="true" aria-expanded="false">' +
+                    '<img src="img/signed-in-btn.png">' +
+                '</button>' +
+                '<ul class="dropdown-menu" aria-labelledby="signed-in-btn" style="right:10px">' +
+                     '<li>Setting</li>' +
+                     '<li>Log out</li>' +
+                '</ul></div>'
+            );
             $('[data-toggle="tooltip"]').tooltip();
         }, 1000);
     });
