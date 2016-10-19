@@ -14,7 +14,7 @@ function populateTwitter(response) {
     var loc = 'https://mobile.twitter.com/search?q=' + country;
     /* add one more word over 3 char's in length from title */
     for (i = 0; i < words.length; i++) {
-        if ((words[i].length > 4) && (words[i] !== country)) {
+        if ((words[i].length > 4) && (words[i].indexOf(country) === -1)) {
             loc += "+"+words[i];
             break;
         }

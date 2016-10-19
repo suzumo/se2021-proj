@@ -109,7 +109,7 @@
   .cesium-infoBox-visible {
     top: 50px;
     left: calc(20% + 12px);
-    width: 40%;
+    width: 30%;
     background: rgba(48,51,54,0.5) !important;
     min-width:350px;
     transform: translate(0,0);
@@ -120,7 +120,7 @@
     transition-duration: 0.2s, 0.2s;
     transition-timing-function: ease-out, ease-out;
     transition-delay: initial;
-    z-index:2;
+    z-index:1;
     border: 1px solid #444;
     max-width: 40%;!important
   }
@@ -130,9 +130,32 @@
   }
 
   .twitter {
-    left: calc(60% + 20px) !important;
+    left: calc(50% + 20px) !important;
     width: 20%;
     height: 785px;
+  }
+
+  .youtube {
+    left: auto!important;
+    right: 10px;
+    width: 20%;
+    min-height: 585px!important;
+    height: 585px;
+    bottom: 52px;
+    top:auto!important;
+  }
+
+  .youtube-iframe {
+    min-height: 585px!important;
+  }
+
+  .youtube-player {
+    top:50px;
+    bottom: auto;
+    right: 10px;
+    left: auto;
+    width:20%;
+    height: 250px;
   }
 
   .twitter-iframe {
@@ -147,7 +170,7 @@
     position: fixed!important;
     top: 5px;
     right:161px;
-    z-index: 3;
+    z-index: 3;!important
   }
 
   .cesium-baseLayerPicker-dropDown-visible {

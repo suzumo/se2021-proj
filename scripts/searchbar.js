@@ -103,9 +103,8 @@ $(document).ready(function() {
 
     $('#login-signin-btn').on('click', function () {
         console.log('log-in button clicked!');
-        var $btn = $(this).button('loading');
+        var $this = $(this).button('loading');
         logged = 1;
-        $btn.button('reset');
         setTimeout(function () {
             $('#welcome').html("Welcome Mathew!");
             $('#loginModal').modal('hide');
@@ -123,7 +122,8 @@ $(document).ready(function() {
                 '</ul></div>'
             );
             $('[data-toggle="tooltip"]').tooltip();
-        }, 1000);
+            $this.button('reset');
+        }, 2000);
     });
 
     $('#feedbackModal').on('hide.bs.modal', function (event) {
