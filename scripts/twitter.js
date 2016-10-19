@@ -15,6 +15,8 @@ function populateTwitter(response) {
     /* add one more word over 3 char's in length from title */
     for (i = 0; i < words.length; i++) {
         if ((words[i].length > 4) && (words[i].indexOf(country) === -1)) {
+            if (country.indexOf(words[i]) !== -1)
+                continue;
             loc += "+"+words[i];
             break;
         }

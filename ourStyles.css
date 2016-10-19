@@ -173,6 +173,10 @@
     z-index: 3;!important
   }
 
+  .cesium-toolbar-button {
+    z-index: 2!important;
+  }
+
   .cesium-baseLayerPicker-dropDown-visible {
     -webkit-transform: translate(0,0);
     -moz-transform: translate(0,0);
