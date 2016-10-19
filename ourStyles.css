@@ -157,6 +157,12 @@
     width:20%;
     height: 250px;
   }
+  .youtube-player-iframe {
+    min-height:inherit;
+    margin-top: 15px;
+    margin-left: 1px;
+    margin-right:auto;
+  }
 
   .twitter-iframe {
     height: 95%;
