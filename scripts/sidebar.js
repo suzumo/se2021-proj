@@ -62,12 +62,14 @@ function updateSidebarContainers(amount, category_name) {
         $(this).siblings('.panel-heading').removeClass('active');
         selected_index = undefined;
         $('.twitter').hide();
+        $('.youtube').hide();
     });
 
     /* function to link "read more" icon in news list to pop articles and highlight pins */
     $('#testSidebar').click(function () {
         console.log("testSidebar got clicked!");
         $('.twitter').hide();
+        $('.youtube').hide();
 
         viewer.selectedEntity = pin[selected_index];
         //console.log("article selected is " + selected_index);

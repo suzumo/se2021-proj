@@ -63,7 +63,7 @@
             <span class="glyphicon glyphicon-search bigger" aria-hidden="true"></span>
           </button>
           <button type="button" id="search-categories" class="cesium-button cesium-toolbar-button searchform-button" data-toggle="popover" title="Categories" data-trigger="focus">
-            <span class="glyphicon glyphicon-th bigger" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-th bigger" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Choose a news category" aria-hidden="true"></span>
           </button>
           <div class="popper-content hide"> <!-- Pass html to content of search-categories popper-->
             <div class="col-xl-9"> <!-- hopefully keeps the table elements a fixed size--> 
@@ -318,7 +318,7 @@
     <div class="cesium-infoBox cesium-infoBox-visible youtube">
         <div class="cesium-infoBox-title">Youtube</div>
         <button type="button" class="cesium-infoBox-close youtube-close">×</button>
-        <div id="youtube-vid-frame" class="cesium-infoBox-iframe youtube-iframe" src="about:blank" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+        <div id="youtube-vid-frame" class="cesium-infoBox-iframe youtube-iframe" src="about:blank" frameborder="0" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" allowfullscreen>
         </div>
     </div>
 
@@ -368,21 +368,20 @@
       startTime();
       $('.alert-success').hide();
       /* youtube buttons not visible when browser starts */
-      //$('.youtube').hide();
-      //$('.youtube-player').hide();
-      $('.youtube-close').click(function() {
-        $('.youtube').hide();
-      })
-      $('.youtube-player-close').click(function() {
-        $('.youtube-player').hide();
-      })
+      $('.youtube').hide();
+      $('.youtube-player').hide();
+
+      /* twitter buttons not visible when browser starts */
+      $('.twitter').hide();
 
       // testing function to see if everything is working as expected -- prints in browser console
       setTimeout(function() {
       //console.log(response); // print out the results from NYT in browser console
       //console.log(coord); // print out the results of all the coordinates
       //console.log(pin);
-
+        $(".cesium-button").each(function(){
+          $(this).attr("data-placement","bottom");
+        })
         $("#feedback-btn").attr("data-toggle", "modal");
         $("#tutorial-btn").attr("data-toggle", "modal");
         $('#sign-in-btn').attr("data-toggle", "modal");

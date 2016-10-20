@@ -1,28 +1,35 @@
 /**
  * Created by Jiyong on 17-Oct-16.
  */
-/* twitter buttons not visible when browser starts */
-$('.twitter').hide();
-
 $('.twitter-close').click(function() {
     $('.twitter').hide();
 })
 
 function populateTwitter(response) {
-    var country = response[selected_index].geo_facet[0];
+    var keywords = [];
+
+    var country = response[selected_index].geo_facet[0].split(/[^\w\s]| /);
+    country = country.filter(function(n) {
+        return n != "";
+    });
+
     var words = response[selected_index].title.split(/[^\w\s]| /);
-    var keyword = "";
     /* add one more word over 3 char's in length from title */
     for (i = 0; i < words.length; i++) {
-        if ((words[i].length > 4) && (words[i].indexOf(country) === -1)) {
-            if (country.indexOf(words[i]) !== -1)
-                continue;
-            keyword += words[i];
-            break;
+        if (words[i].length > 4) {
+            for (j = 0; j < country.length; j++) {
+                if (words[i].indexOf(country[j]) === -1) {
+                    if (country[j].indexOf(words[i]) === -1) {
+//                        console.log("found keyword " + words[i]);
+                        keywords.push(words[i]);
+                        break;
+                    }
+                }
+            }
         }
     }
-    $('#twitter-iframe').attr('src', 'https://mobile.twitter.com/search?q=' + country + "+" + keyword);
-    searchYouTube(country + "+" + keyword);
+    var query = country[country.length-1] + "+" + keywords[keywords.length-1];
+    $('#twitter-iframe').attr('src', 'https://mobile.twitter.com/search?q=' + query);
 }
 
 /* add twitter button to cesium infobox */
@@ -33,6 +40,7 @@ $(document).ready(function(){
     newItem.setAttribute("title", "Read about this on Twitter");
     newItem.setAttribute("data-toggle", "tooltip");
     newItem.setAttribute("data-trigger", "hover");
+    newItem.setAttribute("data-placement", "bottom");
     newItem.innerHTML = '<img src="img/Twitter.svg" width="18" style="position:relative;top:-2px;left:-3px">';
 
     setTimeout(function(){

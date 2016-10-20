@@ -6,6 +6,7 @@ var longitude, latitude;
 $('#searchForm').on("submit",function(e) {
     e.preventDefault();
     $('.twitter').hide();
+    $('.youtube').hide();
     region = document.getElementById("search-word").value;
     console.log(region);
     $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
@@ -75,7 +76,8 @@ $('.cesium-home-button').click(function(){
     //document.getElementById('focus').innerHTML = "Focus: " + region;
 });
 
-$('.cesium-infoBox-close').not('.twitter-close').click(function () {
+$('.cesium-infoBox-close').not('.twitter-close').not('.youtube-close').not('.youtube-player-close').click(function () {
+    $('.youtube').hide();
     $('.twitter').hide();
     selected_index = undefined;
 });
