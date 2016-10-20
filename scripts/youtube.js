@@ -1,18 +1,6 @@
 /**
  * Created by Jiyong on 19-Oct-16.
  */
-/* youtube buttons not visible when browser starts
-$('.youtube').hide();
-$('.youtube-player').hide();
-*/
-
-$('.youtube-close').click(function() {
-    $('.youtube').hide();
-})
-
-$('.youtube-player-close').click(function() {
-    $('.youtube-player').hide();
-})
 
 var youtube_data;
 // Search for a specified string.

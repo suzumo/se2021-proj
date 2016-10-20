@@ -367,6 +367,15 @@
       getHurricanesFromWU();
       startTime();
       $('.alert-success').hide();
+      /* youtube buttons not visible when browser starts */
+      $('.youtube').hide();
+      $('.youtube-player').hide();
+      $('.youtube-close').click(function() {
+        $('.youtube').hide();
+      })
+      $('.youtube-player-close').click(function() {
+        $('.youtube-player').hide();
+      })
 
       // testing function to see if everything is working as expected -- prints in browser console
       setTimeout(function() {
