@@ -11,17 +11,18 @@ $('.twitter-close').click(function() {
 function populateTwitter(response) {
     var country = response[selected_index].geo_facet[0];
     var words = response[selected_index].title.split(/[^\w\s]| /);
-    var loc = 'https://mobile.twitter.com/search?q=' + country;
+    var keyword = "";
     /* add one more word over 3 char's in length from title */
     for (i = 0; i < words.length; i++) {
         if ((words[i].length > 4) && (words[i].indexOf(country) === -1)) {
             if (country.indexOf(words[i]) !== -1)
                 continue;
-            loc += "+"+words[i];
+            keyword += words[i];
             break;
         }
     }
-    $('#twitter-iframe').attr('src', loc);
+    $('#twitter-iframe').attr('src', 'https://mobile.twitter.com/search?q=' + country + "+" + keyword);
+    searchYouTube(country + "+" + keyword);
 }
 
 /* add twitter button to cesium infobox */

@@ -318,8 +318,8 @@
     <div class="cesium-infoBox cesium-infoBox-visible youtube">
         <div class="cesium-infoBox-title">Youtube</div>
         <button type="button" class="cesium-infoBox-close youtube-close">×</button>
-        <iframe id="youtube-iframe" class="cesium-infoBox-iframe youtube-iframe" src="about:blank" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
-        </iframe>
+        <div id="youtube-vid-frame" class="cesium-infoBox-iframe youtube-iframe" src="about:blank" width="99%" height="93%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+        </div>
     </div>
 
     <!-- status box bottom right corner
@@ -368,8 +368,8 @@
       startTime();
       $('.alert-success').hide();
       /* youtube buttons not visible when browser starts */
-      $('.youtube').hide();
-      $('.youtube-player').hide();
+      //$('.youtube').hide();
+      //$('.youtube-player').hide();
       $('.youtube-close').click(function() {
         $('.youtube').hide();
       })
