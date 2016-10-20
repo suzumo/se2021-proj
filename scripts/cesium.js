@@ -41,6 +41,7 @@ $('#cesiumContainer').click( function() {
             deactivate.removeClass('active');
             console.log(" deactivated panel num " + deactivate.attr('value'));
             $('.twitter').hide();
+            $('.youtube').hide();
         } else {
             console.log("enter second condition");
             selected_pin = pickEntity(viewer, new Cesium.Cartesian2(posX, posY));
@@ -55,6 +56,7 @@ $('#cesiumContainer').click( function() {
                 deactivate.removeClass('active');
                 console.log(" deactivated panel num " + deactivate.attr('value'));
                 $('.twitter').hide();
+                $('.youtube').hide();
 
                 var activate = $($('#testSidebar').children()[index + 1]);
                 activate.find('.panel-heading').addClass('active');

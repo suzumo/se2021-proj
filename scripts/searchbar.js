@@ -8,11 +8,12 @@ $('#searchForm').on("submit",function(e) {
     $('.twitter').hide();
     $('.youtube').hide();
     region = document.getElementById("search-word").value;
-    console.log(region);
+    search_history.push(region);
+    console.log(search_history);
     $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
         longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
         latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
-        console.log(longitude + " " + latitude);
+        //console.log(longitude + " " + latitude);
         var target_country = viewer.entities.add({
             name: region,
             position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
@@ -37,7 +38,6 @@ $('#searchForm').on("submit",function(e) {
             console.log("showing results for categories");
             getFromNYT(populateSidebar, category_name);
         }
-        //document.getElementById('focus').innerHTML = "Focus: " + region;
     });
 });
 
@@ -73,7 +73,6 @@ $('.cesium-home-button').click(function(){
     $('#search-word').val("");
     region = "world";
     getFromNYT(populateSidebar, region);
-    //document.getElementById('focus').innerHTML = "Focus: " + region;
 });
 
 $('.cesium-infoBox-close').not('.twitter-close').not('.youtube-close').not('.youtube-player-close').click(function () {

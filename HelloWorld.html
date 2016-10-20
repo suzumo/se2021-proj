@@ -322,8 +322,9 @@
         </div>
     </div>
 
-    <!-- status box bottom right corner
-         TODO: Twitter & FB trending box triggering buttons -->
+    <!-- TODO: Twitter & FB trending box triggering buttons -->
+
+    <!-- logo and time panel -->
   <div id="fixedbox">
     <img src="img/logo_small_white.png">
     <div id="time-date" align="center"></div>
@@ -335,6 +336,7 @@
     var profile = "";
     var region = "world";
     var category_name = "world";
+    var search_history = []; /* contains search histories */
     var selected = undefined; /* selected sidebar news article */
     var selected_index = undefined; /* selected index of news */
     var selected_pin = undefined; /* selected index of pin (should be equal to selected_index */

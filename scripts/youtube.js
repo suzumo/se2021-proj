@@ -28,7 +28,8 @@ function populateYoutube(response) {
             }
         }
     }
-    var query = country[country.length-1] + "+" + keywords[keywords.length-1];
+    var query = country.join("+") + "+" + keywords[keywords.length-3] + "+" + keywords[keywords.length-2] + "+" + keywords[keywords.length-1] ;
+    console.log(query);
 
     if (query === "") {
         query = "cats";
@@ -40,8 +41,8 @@ function populateYoutube(response) {
         data: $.extend({
                 key: 'AIzaSyBGNkwFKR9dZJRRw1sBQCzMuQV2fheOzEA',
                 q: query,
-                part: 'snippet',
-                time: 'this_week'
+                part: 'snippet'
+//                time: 'this_week'
                 }, {maxResults: 20}),
                 dataType: 'json',
                 type: 'GET',
@@ -65,6 +66,9 @@ function setYoutubePlayer(data) {
 
     var html = '<ul class="media-list">';
     for (i = 0; i < data.length; i++) {
+        var string_date = data[i].snippet.publishedAt;
+        var date = string_date.substring(0,9);
+        var time = string_date.substring(11,19);
         html += ('<li class="media">' +
                     '<div class="media-left">' +
                         '<button type="button" class="youtube-image-button" data-toggle="tooltip" data-trigger="hover" title="Click to watch this video!" value="http://www.youtube.com/embed/'+ data[i].id.videoId +'">' +
@@ -72,8 +76,11 @@ function setYoutubePlayer(data) {
                             'height="90" width="120" alt="thumbnail-pic"></button></div>' +
                     '<div class="media-body">' +
                         '<h4 class="media-heading">' + data[i].snippet.title + '</h4>' +
-                        '<div class="video-publisher">'+ data[i].snippet.channelTitle +'</div>' +
-                        '</div></li>');
+                        '<div class="video-publisher">' +
+                            '<div>'+ data[i].snippet.channelTitle +'</div>' +
+                            '<div>'+ date +' '+ time + '</div>' +
+                        '</div>' +
+                     '</div></li>');
     }
     html += '</ul>';
     $('#youtube-vid-frame').html(html);

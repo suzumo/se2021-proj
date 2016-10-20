@@ -37,6 +37,8 @@ function getLocationsFromBingAPI(response, i, next) {
 
 function populateSidebar (response) {
     // initialize panels before populating
+    $('.youtube').hide();
+    $('.twitter').hide();
     updateSidebarContainers(response.length, category_name);
     /*
     for (j=1; j <= 10; j++) {
