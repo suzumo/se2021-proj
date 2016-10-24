@@ -16,6 +16,7 @@ function getFromABC(next) {
             x.geo_facet = [];
             x.geo_facet[0] = aus_loc[i];
             x.multimedia = [];
+            x.url = (x.url).replace('http://www.', 'http://mobile.');
             //x.multimedia.push(result.articles[i].urlToImage);
             australia.push(x);
         }

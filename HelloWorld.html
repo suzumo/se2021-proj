@@ -193,7 +193,8 @@
             <svg:svg class="cesium-svgPath-svg" width="28" height="28" viewBox="0 0 28 28">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:1.5em; top:4px"></span>
             </svg:svg>
-          </button></li>
+          </button>
+          </li>
             <!-- Sign in button -->
           <li id="sign-in-btn-wrapper">
               <script type="text/javascript">
@@ -204,9 +205,9 @@
                   console.log('Image URL: ' + profile.getImageUrl());
                   console.log('Email: ' + profile.getEmail());
               }
-              </script>
+              </script> <!-- unused Google sign in script -->
               <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-width="100" data-height="32" data-longtitle="true"></div> -->
-              <button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
+              <button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Log In</button>
           </li>
         </ul> <!-- right navi buttons collapse -->
       </div> <!-- navbar-collapse -->
@@ -219,7 +220,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+            <h4 class="modal-title" id="exampleModalLabel">Sign in</h4>
           </div>
           <div class="modal-body">
             <form class="form-signin">
@@ -230,33 +231,59 @@
               <div class="checkbox">
                 <label><input type="checkbox" value="remember-me"> Remember me</label>
               </div>
-              <button class="btn btn-lg btn-primary btn-block" data-loading-text="Signing in..." id="login-signin-btn" type="button" autocomplete="off">Sign In</button>
+              <button class="btn btn-lg btn-primary btn-block" data-loading-text="Logging in..." id="login-signin-btn" type="button" autocomplete="off">Log in</button>
             </form>
           </div> 
         </div>
       </div>
     </div>
 
-    <!-- Tutorial modal
-    <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Settings modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">How to use the Daily Planet ;)</h4>
+            <h4 class="modal-title" id="myModalLabel">Change your preferences</h4>
           </div>
           <div class="modal-body" style="text-align:center">
-            <div>
-              Please watch this (fake) YouTube video which lists the features of our site.
-            </div>
-            <img src="img/troll-youtube-tutorial.jpg" data-toggle="tooltip" title="TODO: Fake Youtube?! tutorial" style="padding: 20px;">
+            <form id="settings-form">
+              <div class="form-group">
+                <label for="user-name" class="control-label">Your name:</label>
+                <input type="text" class="form-control" id="user-name">
+              </div>
+              <div class="form-group">
+                <label for="user-email">Email address:</label>
+                <input type="email" class="form-control" id="user-email" aria-describedby="emailhelp">
+                <small id="emailhelp" class="form-text text-muted">We'll never share your email with anyone else</small>
+              </div>
+              <div class="form-group">
+                <label for="user-password">Password:</label>
+                <input type="password" class="form-control" id="user-password" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="user-password2">Re-enter Your Password:</label>
+                <input type="password" class="form-control" id="user-password2" placeholder="Re-enter your password!">
+              </div>
+              <div class="form-group">
+                <label for="user-city">Your town/city/country:</label>
+                <input type="text" class="form-control" id="user-city" placeholder="Please enter your city/town of residence" aria-describedby="cityhelp">
+                <small id="cityhelp" class="form-text text-muted">This will let you see the local weather forecast when you're logged in</small>
+              </div>
+              <div class="form-group">
+                <label for="keywords-text" class="control-label">Your interests:</label>
+                <textarea class="form-control" id="keywords-text" aria-describedby="keywordhelp"></textarea>
+                <small id="keywordhelp" class="form-text text-muted">Separate keywords with a comma or a space</small>
+              </div>
+              <button type="button" id="settings-save-btn" class="btn btn-primary">Save</button>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Email modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -330,10 +357,17 @@
     <div id="time-date" align="center"></div>
   </div>
 
+    <!-- search-history panel -->
+    <div id="search-history" class="cesium-infoBox cesium-infoBox-visible search-history" data-toggle="tooltip" title="Click to access your search history" data-trigger="hover">
+      <button type="button" class="search-history-close" data-toggle="collapse" data-target="#search-history-list" aria-expanded="true" aria-controls="collapseExample">Search History</button>
+      <div id="search-history-list" class="collapse cesium-infoBox-iframe search-history-iframe" frameborder="0"></div>
+    </div>
+
     <!-- more scripts... -->
   <script>
     /* functions to allow zoom to pin upon selecting side panel news */
     var profile = "";
+    var user_city = "Sydney";
     var region = "world";
     var category_name = "world";
     var search_history = []; /* contains search histories */
@@ -388,6 +422,7 @@
         $("#tutorial-btn").attr("data-toggle", "modal");
         $('#sign-in-btn').attr("data-toggle", "modal");
         $("#keybox-title").attr("data-toggle", "dropdown");
+        $(".search-history-close").attr("data-toggle", "collapse");
         $('#feedbackModal').on('show.bs.modal', function(event) {
           var button = $(event.relatedTarget);
           var recipient = button.data('whatever');
@@ -407,6 +442,6 @@
     <script src="scripts/cesium.js"></script>
     <script src="scripts/searchbar.js"></script>
     <script src="scripts/twitter.js"></script>
-
+    <script src="climate-forecast.js"></script>
 </body>
 </html>

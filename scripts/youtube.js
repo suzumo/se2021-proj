@@ -28,7 +28,7 @@ function populateYoutube(response) {
             }
         }
     }
-    var query = country.join("+") + "+" + keywords[keywords.length-3] + "+" + keywords[keywords.length-2] + "+" + keywords[keywords.length-1] ;
+    var query = country.join("+") + "+news+" + keywords[keywords.length-3] + "+" + keywords[keywords.length-2] + "+" + keywords[keywords.length-1] ;
     console.log(query);
 
     if (query === "") {

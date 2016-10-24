@@ -7,9 +7,18 @@ $('#searchForm').on("submit",function(e) {
     e.preventDefault();
     $('.twitter').hide();
     $('.youtube').hide();
+
+    /* update search history list if valid non-empty word */
     region = document.getElementById("search-word").value;
-    search_history.push(region);
-    console.log(search_history);
+    if (region !== "") {
+        search_history.push(region);
+        var children_nodes = "";
+        for (i = search_history.length-1 ; i >=0; i--) {
+            children_nodes += '<div class="search-history-item">'+search_history[i]+'</div>';
+        }
+        $('#search-history-list').html(children_nodes);
+    }
+
     $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
         longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
         latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
@@ -112,18 +121,35 @@ $(document).ready(function() {
             $('#sign-in-btn-wrapper').attr('data-toggle', 'tooltip');
             $('#sign-in-btn-wrapper').attr('data-trigger', 'hover');
             $('#sign-in-btn-wrapper').attr('data-placement', 'bottom');
-            $('#sign-in-btn-wrapper').attr('title', 'Welcome Mathew! You are logged in.');
+            $('#sign-in-btn-wrapper').attr('title', 'You are logged in.');
             $('#sign-in-btn-wrapper').html('<div class="dropdown">' +
                 '<button type="button" data-toggle="dropdown" class="btn btn-default" id="signed-in-btn" style="border:none;margin:7px 30px 7px 23px;padding:0;background:none" aria-haspopup="true" aria-expanded="false">' +
                     '<img src="img/signed-in-btn.png">' +
                 '</button>' +
                 '<ul class="dropdown-menu" aria-labelledby="signed-in-btn" style="right:10px">' +
-                     '<li>Setting</li>' +
-                     '<li>Log out</li>' +
+                     '<li>Welcome Mathew!</li>' +
+                     '<li role="separator" class="divider"></li>' +
+                     '<li>' +
+                        '<span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin:5px"></span>' +
+                        '<button type="button" class="dropdown-menu-btn" id="settings-btn" style="border:none;background:none" data-toggle="modal" data-target="#settingsModal">Setting</button></li>' +
+                     '<li>' +
+                        '<span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin:5px"></span>' +
+                        '<button type="button" class="dropdown-menu-btn" id="logout-btn" data-loading-text="Logging out..." style="border:none;background:none" data-toggle="tooltip" title="Log out?" data-trigger="hover">Log out</button></li>' +
+                    '</li>' +
                 '</ul></div>'
             );
             $('[data-toggle="tooltip"]').tooltip();
             $this.button('reset');
+
+            $('#logout-btn').click(function() {
+                console.log('log-out btn clicked!');
+                logged = 0;
+                //var $this = $(this).button('loading');
+                setTimeout(function() {
+                    $('#sign-in-btn-wrapper').attr('title', 'Please log in');
+                    $('#sign-in-btn-wrapper').html('<button type="button" class="btn btn-primary navbar-btn" id="sign-in-btn" style="border:none;margin:7px 10px 7px 7px" data-toggle="modal" data-target="#loginModal">Log In</button>');
+                }, 2000);
+            })
         }, 2000);
     });
 
