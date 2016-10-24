@@ -19,35 +19,47 @@ $('#searchForm').on("submit",function(e) {
         $('#search-history-list').html(children_nodes);
     }
 
-    $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
-        longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
-        latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
-        //console.log(longitude + " " + latitude);
-        var target_country = viewer.entities.add({
-            name: region,
-            position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
-            outline: true,
-            billboard: {
-                image: "",
-                verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+    try {
+        $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?q='+region+'&key=AoFgEWwWs5F5jvzub_gTZzRfF0DLFUNj-2hoS2xIsM-RlGZ33SAEXTdN7vxaEmX4&jsonp=?', function(result) {
+            longitude = result.resourceSets["0"].resources["0"].point.coordinates["1"]; // longitude
+            latitude = result.resourceSets["0"].resources["0"].point.coordinates["0"]; // latitude
+            //console.log(longitude + " " + latitude);
+            var target_country = viewer.entities.add({
+                name: region,
+                position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
+                outline: true,
+                billboard: {
+                    image: "",
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+                }
+            });
+            var heading = Cesium.Math.toRadians(0);
+            var pitch = Cesium.Math.toRadians(-60);
+            var range = 7500000; // viewing at 7500km from ground
+            viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
+            category_name = 'search'; // when user submits a search, search icon will show up next to title
+            if (region === "Australia") {
+                console.log("showing results for Australia");
+                getFromABC(populateSidebar);
+            } else if (region === "America" || region === "US" || region === "U.S" || region === "U.S.A" || region === "USA") {
+                category_name = "national";
+                getFromNYT(populateSidebar, category_name);
+            } else {
+                if (region === "") {
+                    console.log("showing results for categories");
+                    getFromNYT(populateSidebar, category_name);
+                } else {
+                    category_name = "world";
+                    console.log("showing results via the guardian");
+                    getFromTheGuardian(region, region, populateSidebar);
+                }
             }
         });
-        var heading = Cesium.Math.toRadians(0);
-        var pitch = Cesium.Math.toRadians(-60);
-        var range = 7500000; // viewing at 7500km from ground
-        viewer.zoomTo(target_country, new Cesium.HeadingPitchRange(heading, pitch, range));
-        category_name = 'search'; // when user submits a search, search icon will show up next to title
-        if (region === "Australia") {
-            console.log("showing results for Australia");
-            getFromABC(populateSidebar);
-        } else if (region === "America" || region === "US" || region === "U.S" || region === "U.S.") {
-            category_name = "national";
-            getFromNYT(populateSidebar, category_name);
-        } else {
-            console.log("showing results for categories");
-            getFromNYT(populateSidebar, category_name);
-        }
-    });
+    } catch (e) {
+        console.log("showing results via the guardian");
+        category_name = "world";
+        getFromTheGuardian(region, "world", populateSidebar);
+    }
 });
 
 /* initialize all popovers (for search-categories popover) */
